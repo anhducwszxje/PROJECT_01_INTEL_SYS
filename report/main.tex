@@ -1,4 +1,4 @@
-% Compatible with pdfLaTeX, XeLaTeX and LuaLaTeX on local TeX/Overleaf.
+% Build with XeLaTeX; see README.md for fonts and commands.
 \documentclass[12pt,a4paper]{report}
 
 % =========================================================================
@@ -39,6 +39,7 @@
 \usepackage{subcaption}
 \usepackage{enumitem}
 \usepackage{listings}
+\usepackage{textcomp}
 \usepackage{hyperref}
 
 \newcommand{\missinggraphic}[1]{%
@@ -104,6 +105,7 @@
     rulecolor=\color{black!20}
 }
 \lstset{style=mystyle}
+\input{code_setup}
 
 \titleformat{\chapter}[display]
   {\normalfont\bfseries\color{black}}
@@ -133,6 +135,7 @@
 
 \usepackage{xurl}
 \renewcommand{\lstlistingname}{Mã nguồn}
+\renewcommand{\lstlistlistingname}{DANH MỤC MÃ NGUỒN}
 \setcounter{tocdepth}{1}
 \renewcommand{\chaptername}{Phần}
 \renewcommand{\figurename}{Hình}
@@ -235,6 +238,8 @@
 \clearpage
 \listoftables
 \clearpage
+\lstlistoflistings
+\clearpage
 \pagenumbering{arabic}
 \input{introduction}
 \input{architecture}
@@ -242,6 +247,7 @@
 \input{knowledge_rl}
 \input{implementation}
 \input{results}
+\input{demo}
 \input{deployment}
 \input{conclusion}
 \input{references}

@@ -1,8 +1,8 @@
 \chapter{Thực nghiệm và phân tích kết quả}
 \section{Điều kiện thực nghiệm}
-Các thực nghiệm chạy trên CPU với Python 3.11.9, PyTorch 2.15.0+cpu, scikit-learn 1.9.1, pandas 2.3.3 và Streamlit 1.66.1. Phiên bản trực tiếp được ghi trong requirements, còn môi trường kiểm tra đầy đủ nằm ở \texttt{artifacts/environment.txt}. Môi trường cài mới trên máy khác chưa được kiểm chứng; việc bàn giao xác nhận source và artifact chạy trong môi trường nêu trên.
+Các thực nghiệm chạy trên CPU với Python 3.11.9, PyTorch 2.15.0+cpu, scikit-learn 1.9.1, pandas 2.3.3 và Streamlit 1.66.1. Phiên bản trực tiếp được ghi trong requirements, còn môi trường kiểm tra đầy đủ nằm ở \texttt{artifacts/environment.txt}.
 
-Dữ liệu supervised dùng một split/seed cố định. RL chạy năm seed train và các seed eval tách biệt. Đánh giá phần mềm và truy xuất sử dụng kịch bản do tác giả xây. Mỗi loại bằng chứng trả lời một câu hỏi khác nhau: test supervised đo phân loại nội bộ, simulator đo utility giả định, bộ tình huống đo tuân thủ hợp đồng. Không gộp các điểm này thành một tỷ lệ chính xác chung của hệ thống y tế.
+Dữ liệu supervised dùng một split/seed cố định. RL chạy năm seed train và các seed eval tách biệt. Đánh giá phần mềm và truy xuất sử dụng kịch bản do tác giả xây. Test supervised đo phân loại nội bộ, simulator đo utility của policy và bộ tình huống kiểm tra hợp đồng phần mềm.
 
 \section{Kết quả validation và lựa chọn mặc định}
 \input{tables/model_validation.tex}
@@ -14,18 +14,18 @@ Chênh lệch AP giữa hai model rất nhỏ và chưa có phân tích độ b�
 \input{tables/model_test.tex}
 \input{tables/confusion.tex}
 
-\noindent\textbf{Quan sát.} MLP đạt ROC AUC khoảng 0,8168 và AP khoảng 0,3916; Random Forest đạt AUC khoảng 0,8096 và AP khoảng 0,3906. Logistic Regression đạt AUC khoảng 0,8118. Các model học được đều có AP cao hơn Dummy khoảng 0,1373, là tỷ lệ lớp dương trong test.
+MLP đạt ROC AUC khoảng 0,8168 và AP khoảng 0,3916; Random Forest đạt AUC khoảng 0,8096 và AP khoảng 0,3906. Logistic Regression đạt AUC khoảng 0,8118. Các model học được đều có AP cao hơn Dummy khoảng 0,1373, là tỷ lệ lớp dương trong test.
 
-\noindent\textbf{Diễn giải.} MLP nhỉnh hơn về AUC/AP trên test nhưng không làm thay đổi quyết định mặc định đã khóa từ validation. Các chênh lệch này là mô tả trên cùng split, chưa đủ để khẳng định ưu thế tổng quát. Mô hình bảng đơn giản hơn vẫn là đối chứng cần thiết cho một mạng hai lớp ẩn.
+MLP nhỉnh hơn về AUC/AP trên test nhưng không làm thay đổi quyết định mặc định đã khóa từ validation. Các chênh lệch này là mô tả trên cùng split, chưa đủ để khẳng định ưu thế tổng quát.
 
-\noindent\textbf{Đánh đổi tại ngưỡng.} MLP phát hiện 323/496 mẫu lớp 1, còn bỏ sót 173 mẫu và tạo 639 dương tính giả. Random Forest phát hiện 309 mẫu, bỏ sót 187 và tạo 558 dương tính giả. Khi tăng recall, precision có thể giảm; việc chọn F1 validation không đồng nghĩa chọn ngưỡng phù hợp cho quyết định lâm sàng.
+MLP phát hiện 323/496 mẫu lớp 1, còn bỏ sót 173 mẫu và tạo 639 dương tính giả. Random Forest phát hiện 309 mẫu, bỏ sót 187 và tạo 558 dương tính giả. Khi tăng recall, precision có thể giảm; việc chọn F1 validation không đồng nghĩa chọn ngưỡng phù hợp cho quyết định lâm sàng.
 
 \begin{figure}[H]\centering
 \includegraphics[width=\textwidth]{images/classification.png}
 \caption{ROC và Precision--Recall trên test. Mọi quyết định về model/ngưỡng được thực hiện bằng validation trước đó.}
 \end{figure}
 
-Dummy được chọn ngưỡng nhỏ hơn điểm tiên nghiệm nên dự đoán tất cả là lớp 1, dẫn tới recall 1 và specificity 0. Điều này minh họa vì sao một chỉ số riêng lẻ có thể gây hiểu nhầm. Cần đọc đồng thời precision, recall và số lượng FP/FN.
+Dummy được chọn ngưỡng nhỏ hơn điểm tiên nghiệm nên dự đoán tất cả là lớp 1, dẫn tới recall 1 và specificity 0. Precision, recall và ma trận nhầm lẫn trong các bảng phản ánh những mặt khác nhau của kết quả này.
 
 \section{Quá trình học của MLP}
 \begin{figure}[H]\centering
@@ -33,15 +33,15 @@ Dummy được chọn ngưỡng nhỏ hơn điểm tiên nghiệm nên dự đo�
 \caption{Loss train và validation, đường dọc thể hiện epoch được chọn để lưu checkpoint.}
 \end{figure}
 
-Checkpoint MLP được chọn tại epoch 21 theo BCE validation. Train tiếp tục cho tới khi đủ số epoch không cải thiện rồi nạp lại checkpoint tốt nhất. Train loss và validation loss không nhất thiết cùng giảm ở các epoch cuối; đó là lý do giữ checkpoint dựa trên tập không tham gia cập nhật gradient.
+Checkpoint MLP được chọn tại epoch 21 theo BCE validation. Train tiếp tục cho tới khi đủ số epoch không cải thiện rồi nạp lại checkpoint tốt nhất. Ở các epoch cuối, train loss tiếp tục giảm trong khi validation loss tăng hoặc dao động.
 
-Brier test của MLP khoảng 0,0987, thấp hơn Dummy khoảng 0,1185. Đây là dấu hiệu mô hình cung cấp score hữu ích hơn tiên nghiệm trong điều kiện test nội bộ. Chưa có đường calibration theo nhóm, khoảng tin cậy hoặc đánh giá dịch chuyển phân bố nên không thể chuyển score đó thành nguy cơ cá nhân ở Việt Nam.
+Brier test của MLP khoảng 0,0987, thấp hơn Dummy khoảng 0,1185. Sai số score trên test nội bộ thấp hơn bộ dự đoán tiên nghiệm. Calibration theo nhóm và độ ổn định khi dịch chuyển phân bố chưa được đánh giá.
 
 \section{Truy xuất tri thức và vai trò đồ thị}
 \input{tables/retrieval.tex}
 Cả hai cấu hình đều tìm đúng ID đầu tiên ở toàn bộ 24 câu trong phiên bản cuối. Vì vậy, bộ câu hiện tại không cho thấy lợi ích đo được của bonus đồ thị về Hit@1, Hit@3 hoặc MRR. Đồ thị vẫn có chức năng biểu diễn liên kết và mở rộng concept trong implementation, nhưng chưa có bằng chứng nó làm tăng chất lượng trên tập kiểm tra này.
 
-Điểm tuyệt đối cần được đọc cùng giới hạn thiết kế: chỉ 12 ghi chú, câu hỏi do chính tác giả viết và dùng lại để kiểm tra trong phát triển. Không có bộ paraphrase độc lập hoặc đánh giá từ người dùng. Một bước tiếp theo có giá trị là thu thập câu hỏi ngoài từ vựng KB, nhiều chủ đề và trường hợp cần từ chối, rồi khóa bộ test riêng.
+Bộ đánh giá gồm 12 ID đích và 24 câu do tác giả viết, đã dùng trong phát triển. Chưa có bộ paraphrase độc lập hoặc đánh giá từ người dùng.
 
 \section{Kết quả Q-learning và đối chứng}
 \input{tables/rl.tex}
@@ -50,20 +50,19 @@ Cả hai cấu hình đều tìm đúng ID đầu tiên ở toàn bộ 24 câu t
 \caption{Đường học năm seed và reward đánh giá trong môi trường nhắc việc giả lập.}
 \end{figure}
 
-\noindent\textbf{Quan sát.} Q-learning có reward trung bình khoảng 0,2703 mỗi ngày, cao hơn never khoảng 0,0876 và rule khoảng 0,2006, nhưng thấp hơn fixed khoảng 0,2868. Độ lệch chuẩn giữa năm seed train của Q-learning khoảng 0,0153.
+Q-learning có reward trung bình khoảng 0,2703 mỗi ngày, cao hơn never khoảng 0,0876 và rule khoảng 0,2006, nhưng thấp hơn fixed khoảng 0,2868. Độ lệch chuẩn giữa năm seed train của Q-learning khoảng 0,0153.
 
-\noindent\textbf{Diễn giải.} Trong simulator này, lợi ích ghi nhận do hành động nhắc thường bù được chi phí nên policy luôn nhắc là đối chứng mạnh. Q-learning hữu hạn với learning rate cố định và năm seed chưa vượt đối chứng đó. Kết quả không được sửa bằng cách đổi reward sau khi xem điểm; báo cáo giữ nguyên cả trường hợp RL không tốt nhất.
+Trong simulator này, lợi ích ghi nhận do hành động nhắc thường bù được chi phí nên policy luôn nhắc là đối chứng mạnh. Q-learning hữu hạn với learning rate cố định và năm seed chưa vượt đối chứng đó. Các policy được so sánh với cùng hàm reward.
 
-\noindent\textbf{Giới hạn của phép đo.} Fixed/never/rule có std giữa seed train bằng 0 vì cùng policy được đánh giá lại với cùng 200 seed eval, không phải vì mọi rollout có reward giống nhau. Các dòng lặp của đối chứng không tạo thêm mẫu độc lập. Q-table seed 42 được nạp trong demo theo quy ước trước, không chọn theo reward eval.
+Fixed/never/rule có std giữa seed train bằng 0 vì cùng policy được đánh giá lại với cùng 200 seed eval, không phải vì mọi rollout có reward giống nhau. Các dòng lặp của đối chứng không tạo thêm mẫu độc lập. Q-table seed 42 được nạp trong demo theo quy ước trước, không chọn theo reward eval.
 
 \section{Kiểm tra tích hợp và lỗi được inject}
 \input{tables/system.tex}
-Toàn bộ 20 kịch bản đạt trạng thái mong đợi ở phiên bản bàn giao. Kịch bản phủ luồng dự đoán, dữ liệu thiếu/sai mã, query có/không có bằng chứng, số đo bổ sung không hợp lệ, nhánh khẩn cấp, phạm vi thuốc và reminder. Đây là tỷ lệ đạt bộ yêu cầu phần mềm hữu hạn, không phải tỷ lệ tư vấn đúng trong mọi tình huống.
+Toàn bộ 20 kịch bản đạt trạng thái mong đợi ở phiên bản bàn giao. Kịch bản phủ luồng dự đoán, dữ liệu thiếu/sai mã, query có/không có bằng chứng, số đo bổ sung không hợp lệ, nhánh khẩn cấp, phạm vi thuốc và reminder. Các kịch bản kiểm tra những trạng thái đầu ra đã quy định.
 
-Sáu proposal lỗi được inject riêng gồm thuốc, tri thức không nguồn, ID giả, score vượt khoảng, score NaN và lỗi handler. Council bác cả sáu. Ở cấu hình bỏ Council, các proposal được đánh dấu unreviewed; không gọi đó là đã qua kiểm tra hoặc đã gây hại. Phép ablation xác nhận chức năng veto đối với lỗi được dựng sẵn, chưa chứng minh MAS tốt hơn một pipeline đơn tác tử dùng cùng luật và công cụ.
+Sáu proposal lỗi được inject riêng gồm thuốc, tri thức không nguồn, ID giả, score vượt khoảng, score NaN và lỗi handler. Council bác cả sáu. Ở cấu hình bỏ Council, các proposal được đánh dấu unreviewed. Phép ablation xác nhận chức năng veto đối với lỗi được dựng sẵn, chưa chứng minh MAS tốt hơn một pipeline đơn tác tử dùng cùng luật và công cụ.
 
 \section{Kiểm thử tự động và notebook}
 Bộ pytest có 32 trường hợp và đều đạt, bao gồm tính toàn vẹn dữ liệu, mã khảo sát, nạp model, truy xuất, ưu tiên urgent, Council veto, cô lập lỗi, Q-learning và lưu audit. Kiểm thử giao diện bằng Streamlit AppTest chạy hội chẩn, ba kịch bản nhanh, nhập JSON thiếu trường và xử lý glucose thấp.
 
-Bốn notebook có lần lượt 7, 6, 5 và 8 code cell, tổng cộng 26 cell. Tất cả có execution count và không có error output. Log lưu tên file, số cell và thời gian thực thi. Việc kiểm tra trực tiếp bằng trình duyệt còn được dùng để quan sát màu chữ, bố cục và ảnh minh chứng, bổ sung cho kiểm thử cấu trúc bằng AppTest.
-
+Bốn notebook có lần lượt 7, 6, 5 và 8 code cell, tổng cộng 26 cell. Tất cả có execution count và không có error output. Log lưu tên file, số cell và thời gian thực thi. Giao diện còn được kiểm tra trực tiếp trong trình duyệt về bố cục và màu chữ.

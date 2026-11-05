@@ -2,13 +2,16 @@
 
 Bản đọc: `project01_CT_02_ducba.165.pdf`. Source chính: `main.tex`; các phần nội dung chia file cùng thư mục. Style kế thừa Agent02, nội dung và số liệu riêng của Project01.
 
-Để cập nhật bảng/đồ thị theo artifact, chạy từ thư mục PROJECT_01:
+Báo cáo có chương mã nguồn với 14 đoạn trích và giải thích, cùng chương giao diện demo gồm bốn ảnh chụp. Các đoạn mã giữ tên tệp và số dòng gốc; bảng đối chiếu và SHA256 nằm trong `snippets/manifest.json`.
+
+Để cập nhật bảng/đồ thị theo artifact và trích lại code, chạy từ thư mục PROJECT_01:
 
 ```powershell
 python scripts/update_report_assets.py
+python scripts/export_report_code.py
 ```
 
-Sau đó đọc lại các nhận xét định lượng trong `results.tex`, `learning.tex`, `deployment.tex`. Script không tự thay diễn giải hoặc chụp lại giao diện. Notebook cần được thực thi trước khi lấy ảnh cell.
+Sau đó đối chiếu các nhận xét định lượng trong `results.tex`, `learning.tex`, `demo.tex`. Script không tự thay diễn giải hoặc chụp lại giao diện. Ảnh demo nằm trong `images/demo_*.jpg`.
 
 Biên dịch bằng MiKTeX hoặc TeX Live có XeLaTeX và font Times New Roman (nếu thiếu, source fallback TeX Gyre Termes). Từ thư mục report:
 

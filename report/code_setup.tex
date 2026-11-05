@@ -1,0 +1,88 @@
+\ifPDFTeX\else
+\IfFontExistsTF{Consolas}{\setmonofont{Consolas}[Scale=MatchLowercase]}{\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]}
+\fi
+\lstdefinestyle{projectcode}{style=mystyle,language=Python,
+  basicstyle=\ttfamily\fontsize{9}{11}\selectfont,
+  numberstyle=\ttfamily\fontsize{7}{9}\selectfont\color{codegray},
+  columns=fullflexible,breaklines=true,breakatwhitespace=false,upquote=true,
+  xleftmargin=15pt,xrightmargin=3pt,framexleftmargin=3pt,
+  aboveskip=7pt,belowskip=10pt,captionpos=b}
+\ifPDFTeX\else
+\makeatletter
+\begingroup\catcode0=12\relax
+\gdef\reportunicode{\lst@CCECUse\lst@ProcessLetter Đđơưạảấầẫậắằẵặếềểệịốồổỗộờợụứửữự^^00}
+\endgroup
+\lst@AddToHook{SelectCharTable}{\reportunicode}
+\makeatother
+\fi
+\newcommand{\reportcode}[2]{\csname code@#1\endcsname{#2}}
+\expandafter\def\csname code@data_check\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{diabetes_agent/data.py}, dòng 11--26.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=11,gobble=0,caption={#1}]{snippets/data_check.py}
+\end{minipage}\par}
+\expandafter\def\csname code@architecture\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{diabetes_agent/models.py}, dòng 28--30.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=28,gobble=0,caption={#1}]{snippets/architecture.py}
+\end{minipage}\par}
+\expandafter\def\csname code@train_setup\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{diabetes_agent/models.py}, dòng 78--88.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=78,gobble=4,caption={#1}]{snippets/train_setup.py}
+\end{minipage}\par}
+\expandafter\def\csname code@train_loop\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{diabetes_agent/models.py}, dòng 89--113.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=89,gobble=4,caption={#1}]{snippets/train_loop.py}
+\end{minipage}\par}
+\expandafter\def\csname code@threshold\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{diabetes_agent/models.py}, dòng 33--36.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=33,gobble=0,caption={#1}]{snippets/threshold.py}
+\end{minipage}\par}
+\expandafter\def\csname code@model_selection\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{diabetes_agent/models.py}, dòng 133--145.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=133,gobble=4,caption={#1}]{snippets/model_selection.py}
+\end{minipage}\par}
+\expandafter\def\csname code@inference\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{diabetes_agent/models.py}, dòng 178--193.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=178,gobble=4,caption={#1}]{snippets/inference.py}
+\end{minipage}\par}
+\expandafter\def\csname code@retrieval\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{diabetes_agent/knowledge.py}, dòng 26--53.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=26,gobble=4,caption={#1}]{snippets/retrieval.py}
+\end{minipage}\par}
+\expandafter\def\csname code@q_learning\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{diabetes_agent/rl.py}, dòng 26--40.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=26,gobble=0,caption={#1}]{snippets/q_learning.py}
+\end{minipage}\par}
+\expandafter\def\csname code@message_bus\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{diabetes_agent/system.py}, dòng 70--81.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=70,gobble=4,caption={#1}]{snippets/message_bus.py}
+\end{minipage}\par}
+\expandafter\def\csname code@council\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{diabetes_agent/system.py}, dòng 46--63.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=46,gobble=0,caption={#1}]{snippets/council.py}
+\end{minipage}\par}
+\expandafter\def\csname code@coordination\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{diabetes_agent/system.py}, dòng 120--141.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=120,gobble=8,caption={#1}]{snippets/coordination.py}
+\end{minipage}\par}
+\expandafter\def\csname code@ui_presets\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{app.py}, dòng 49--55.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=49,gobble=0,caption={#1}]{snippets/ui_presets.py}
+\end{minipage}\par}
+\expandafter\def\csname code@ui_flow\endcsname#1{%
+\par\noindent\begin{minipage}{\linewidth}
+\noindent{\footnotesize\textit{Nguồn: }\path{app.py}, dòng 58--69.}\par\smallskip
+\lstinputlisting[style=projectcode,firstnumber=58,gobble=0,caption={#1}]{snippets/ui_flow.py}
+\end{minipage}\par}

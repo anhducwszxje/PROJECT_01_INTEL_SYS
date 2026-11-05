@@ -1,0 +1,114 @@
+{
+  "data_check": {
+    "source": "diabetes_agent/data.py",
+    "function": "load_data",
+    "first_line": 11,
+    "last_line": 26,
+    "gobble": 0,
+    "sha256": "ced323c37fcb9313952f48d046072e9b73bd44bfe07dce73f68ed1df8ca53ac5"
+  },
+  "architecture": {
+    "source": "diabetes_agent/models.py",
+    "function": "architecture",
+    "first_line": 28,
+    "last_line": 30,
+    "gobble": 0,
+    "sha256": "1586b6e31bb706c958f49f3dfe45c0b39f21066f03219ce1b1777ed21c9a6bdb"
+  },
+  "train_setup": {
+    "source": "diabetes_agent/models.py",
+    "function": "train_all",
+    "first_line": 78,
+    "last_line": 88,
+    "gobble": 4,
+    "sha256": "65d0b14d09f9a3b34436014d1b66e150973c8cbf54fce9c4aa95fb530f545ba5"
+  },
+  "train_loop": {
+    "source": "diabetes_agent/models.py",
+    "function": "train_all",
+    "first_line": 89,
+    "last_line": 113,
+    "gobble": 4,
+    "sha256": "5296fd07c04fde7a625216ef6c0727cd4d056a394161f4ccebd3b2c40f86e67e"
+  },
+  "threshold": {
+    "source": "diabetes_agent/models.py",
+    "function": "choose_threshold",
+    "first_line": 33,
+    "last_line": 36,
+    "gobble": 0,
+    "sha256": "9e26d8608449d3ca7b9ea9b7605e566b39e949e062ce412688ef734401fb3e16"
+  },
+  "model_selection": {
+    "source": "diabetes_agent/models.py",
+    "function": "train_all",
+    "first_line": 133,
+    "last_line": 145,
+    "gobble": 4,
+    "sha256": "7652ed41a39f5e13af28d4e527a8274573a3a285f6865fa8bf6080bec2b1d88a"
+  },
+  "inference": {
+    "source": "diabetes_agent/models.py",
+    "function": "predict",
+    "first_line": 178,
+    "last_line": 193,
+    "gobble": 4,
+    "sha256": "15553ac9cfc6a1b8cb0f70fb483b87549dad1c6ab43cffaa7e40ca136e281ec4"
+  },
+  "retrieval": {
+    "source": "diabetes_agent/knowledge.py",
+    "function": "retrieve",
+    "first_line": 26,
+    "last_line": 53,
+    "gobble": 4,
+    "sha256": "c153080730d61a62524b76b9fed9d5d8cc5d8aac533c05178c3bf3a330ef510b"
+  },
+  "q_learning": {
+    "source": "diabetes_agent/rl.py",
+    "function": "train_q",
+    "first_line": 26,
+    "last_line": 40,
+    "gobble": 0,
+    "sha256": "00803bb1de1ea29b897e02965c598e5eba39e742aa03828e3e24f9a5dc2ea697"
+  },
+  "message_bus": {
+    "source": "diabetes_agent/system.py",
+    "function": "send",
+    "first_line": 70,
+    "last_line": 81,
+    "gobble": 4,
+    "sha256": "a6d5656f9d40e07d19e2c1c3cd26af3ad681a1dc5e0fafd74c03d2785fda8d51"
+  },
+  "council": {
+    "source": "diabetes_agent/system.py",
+    "function": "review",
+    "first_line": 46,
+    "last_line": 63,
+    "gobble": 0,
+    "sha256": "f30d2698a09f241f3714e126884b80c08355920d66c807e584a65150f708c35f"
+  },
+  "coordination": {
+    "source": "diabetes_agent/system.py",
+    "function": "run",
+    "first_line": 120,
+    "last_line": 141,
+    "gobble": 8,
+    "sha256": "d7d86b7b81da485de99118052ed6316a796daf902014c150b211d6efd3d66ed3"
+  },
+  "ui_presets": {
+    "source": "app.py",
+    "function": "run_preset",
+    "first_line": 49,
+    "last_line": 55,
+    "gobble": 0,
+    "sha256": "d91a5150cfae1daf9102e34c31bbdf17b779695048af659731dbab03d345c83b"
+  },
+  "ui_flow": {
+    "source": "app.py",
+    "function": "render_flow",
+    "first_line": 58,
+    "last_line": 69,
+    "gobble": 0,
+    "sha256": "e26a33ba337151b7ed2f24503f50405200a64f7956d41776fbc30c80a71ef7d2"
+  }
+}

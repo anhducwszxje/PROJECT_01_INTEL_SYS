@@ -64,7 +64,7 @@ table("system", "Các kịch bản chức năng được chạy ở phiên bản
       ["Kịch bản", "Trạng thái mong đợi", "Đạt", "Thông điệp"],
       [[r.case, r.expected, "Có" if r.passed else "Không", r.messages] for r in evals.itertuples()], "llcr")
 retrieval = pd.read_csv(OUT / "retrieval_evaluation.csv")
-table("retrieval", "Truy xuất trên 24 câu do tác giả thiết kế; không phải kiểm định bên ngoài.",
+table("retrieval", "Đánh giá truy xuất trên 24 câu hỏi của bộ thực nghiệm.",
       ["Cấu hình", "Hit@1", "Hit@3", "MRR"],
       [["TF-IDF + graph" if graph else "TF-IDF", *[f"{g[c].mean():.4f}" for c in ("hit_at_1", "hit_at_3", "reciprocal_rank")]]
        for graph, g in retrieval.groupby("graph")], "lrrr")

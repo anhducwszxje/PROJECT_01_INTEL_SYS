@@ -1,17 +1,12 @@
 \chapter{Kết luận và hướng phát triển}
 \section{Kết quả đạt được}
-Project01 đã hiện thực một Diabetes Agent chạy local với mã nguồn độc lập, bốn notebook có output thực, dữ liệu có provenance, model đã huấn luyện và giao diện quan sát được quá trình phối hợp.
+Project01 triển khai Diabetes Agent chạy local với ba nhánh phân loại hồ sơ, truy xuất tri thức và học chính sách nhắc nhật ký. Bảy vai trò phối hợp qua thông điệp, có kiểm tra đầu vào và duyệt proposal trước khi tổng hợp. Source, bốn notebook đã thực thi, dữ liệu, model và giao diện được đóng gói cùng báo cáo.
 
-Kết quả supervised cho thấy các mô hình học được có khả năng phân biệt nhãn trên test nội bộ cao hơn Dummy. Random Forest được chọn mặc định theo AP validation; MLP vẫn được cung cấp và đánh giá đầy đủ. Truy xuất tìm đúng các ID đích trong bộ câu tự xây, còn bộ hợp đồng và pytest xác nhận những nhánh chức năng đã định. Q-learning học được policy có reward hơn never/rule nhưng chưa vượt fixed trong simulator hiện tại.
+Random Forest được chọn theo AP validation 0,3713. Trên test, MLP đạt AP 0,3916 và Random Forest đạt 0,3906, đều cao hơn Dummy 0,1373. Hai cấu hình truy xuất đạt Hit@1 bằng 1 trên 24 câu tự xây; bonus đồ thị chưa tạo chênh lệch trong bộ câu này. Q-learning đạt reward 0,2703 mỗi ngày, cao hơn never và rule nhưng thấp hơn fixed 0,2868. Hệ thống đạt 20/20 kịch bản tích hợp và 32/32 kiểm thử tự động.
 
-Giá trị của thiết kế đa tác tử ở project là trách nhiệm được tách rõ, có thông điệp, kiểm tra và quyền từ chối trước khi tổng hợp. Chưa có kết quả chứng minh kiến trúc này tốt hơn một pipeline đơn dùng cùng công cụ. Việc trình bày giới hạn là cần thiết để tách khả năng chạy được của phần mềm khỏi độ tin cậy trong ứng dụng thực.
+\section{Giới hạn và hướng phát triển}
+Phân loại mới được đánh giá trên một split/seed của dữ liệu khảo sát Hoa Kỳ với nhãn gộp; chưa có đánh giá ngoài mẫu, theo nhóm hoặc khoảng tin cậy. Các thử nghiệm tiếp theo gồm lặp split/seed, so sánh mã hóa biến nhân khẩu và đánh giá calibration trên dữ liệu độc lập.
 
-\section{Giới hạn hiện tại}
-Dữ liệu là khảo sát Hoa Kỳ, nhãn gộp và chưa có thẩm định ngoài mẫu. Mã nhóm nhân khẩu được đưa vào dưới dạng số; chưa kiểm tra thiên lệch theo nhóm hoặc phương án mã hóa khác. Supervised mới có một split/seed và chưa có khoảng tin cậy hoặc external validation.
+Kho tri thức có 12 ghi chú; câu hỏi truy xuất do tác giả biên soạn và đã được sử dụng trong phát triển. Bộ câu độc lập với cách diễn đạt đa dạng và đánh giá thủ công độ liên quan sẽ bổ sung bằng chứng cho nhánh này. Hiệu quả kiến trúc đa tác tử so với pipeline đơn dùng cùng công cụ cũng chưa được đo.
 
-KB nhỏ, bộ câu hỏi tự xây; Council và luật tiếp nhận chỉ kiểm tra các điều kiện đã định. RL dùng reward tự đặt và chưa có dữ liệu hành vi thật. Demo chưa có các yêu cầu vận hành cho hồ sơ bệnh nhân và không thay thế kế hoạch chăm sóc.
-
-\section{Hướng phát triển có thể kiểm chứng}
-Bước tiếp theo nên ưu tiên một bộ câu hỏi độc lập và đánh giá thủ công độ liên quan của trích đoạn, trước khi tăng số agent hoặc bổ sung LLM. Với nhánh dự đoán, cần so sánh mã hóa biến, lặp split/seed, báo khoảng bất định, đánh giá calibration và subgroup trong điều kiện sử dụng xác định.
-
-Với RL, cần kiểm tra độ nhạy theo hệ số reward và động lực phản ứng, đối chiếu với nghiệm tối ưu của MDP nhỏ nếu muốn phân tích sai lệch policy. Chỉ chuyển sang nghiên cứu nhắc việc thực tế khi có dữ liệu, đồng thuận và thiết kế đánh giá phù hợp. Những mở rộng này tạo câu hỏi kiểm chứng được, thay vì chỉ tăng độ phức tạp của hệ thống.
+Nhánh RL sử dụng động lực phản ứng và reward giả lập. Phân tích độ nhạy theo hệ số reward, đối chiếu với nghiệm tối ưu của MDP nhỏ và đánh giá trên dữ liệu hành vi là các hướng mở rộng. Những kết quả hiện tại phản ánh chất lượng chính sách trong simulator đã định nghĩa.

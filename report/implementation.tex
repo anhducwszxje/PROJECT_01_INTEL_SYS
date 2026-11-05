@@ -1,84 +1,97 @@
-\chapter{Mã nguồn và notebook thực hành}
-\section{Cấu trúc thư mục}
-Mã được tổ chức theo chức năng để dễ đọc và tránh hai phiên bản thuật toán khác nhau trong notebook và demo. Notebook giải thích quá trình, gọi fit/evaluate thật và lưu output. Module chứa implementation dùng chung, còn \texttt{app.py} chỉ xây giao diện và gọi hệ thống.
+\chapter{Cài đặt và giải thích mã nguồn}
+\section{Tổ chức mã nguồn}
+Các module trong \path{diabetes_agent/} được dùng chung bởi notebook và giao diện. \path{data.py} đọc dữ liệu; \path{models.py} huấn luyện và suy luận; \path{knowledge.py} truy xuất tri thức; \path{rl.py} cài đặt môi trường và Q-learning; \path{system.py} quản lý thông điệp và điều phối. \path{app.py} nhận đầu vào, gọi hệ thống và hiển thị kết quả.
 
-\begin{lstlisting}[language={},caption={Cấu trúc các thành phần bàn giao.}]
-PROJECT_01/
-  app.py
-  run.cmd
-  requirements.txt
-  diabetes_agent/
-    config.py         data.py          models.py
-    knowledge.py      rl.py            system.py
-    evaluation.py
-  notebooks/          # 01 -> 04, executed outputs
-  data/               # CSV, provenance, KB, graph, cases
-  artifacts/          # models, metrics, predictions, Q, audit
-  tests/test_project.py
-  scripts/
-    run_experiments.py    execute_notebooks.py
-    update_report_assets.py
-  docs/               # local run and demo instructions
-  report/             # PDF, LaTeX, measured tables, images
-\end{lstlisting}
+Các đoạn mã trong phần này được trích từ source của Project01. Tên tệp và số dòng được ghi phía trên mỗi đoạn; số dòng bên trái giữ theo tệp gốc.
 
-\section{Các hàm và lớp chính}
+\section{Đọc dữ liệu và kiểm tra chia tập}
+\reportcode{data_check}{Đọc CSV và kiểm tra tính toàn vẹn dữ liệu.}
+
+Hàm \texttt{load\_data} đọc checksum từ \path{provenance.json}, tính SHA256 của CSV rồi so sánh trước khi nạp bảng. Hai phép kiểm tra sau đó xác nhận nhãn thuộc tập $\{0,1\}$ và 21 cột đầu vào không có giá trị thiếu.
+
+Biến \texttt{groups} chứa tập mã nhóm của train, validation và test. Phép giao giữa các tập được kiểm tra để phát hiện nhóm xuất hiện ở nhiều split. Phần cuối tính lại fingerprint từ chính 21 đặc trưng; nếu một fingerprint thuộc nhiều split, biểu thức \texttt{nunique().max()} lớn hơn 1 và chương trình dừng. Kết quả trả về là DataFrame đã qua các kiểm tra này.
+
+\section{Mạng MLP và chuẩn hóa đầu vào}
+\reportcode{architecture}{Kiến trúc MLP sử dụng trong huấn luyện và suy luận.}
+
+\texttt{nn.Linear(21,64)} ánh xạ 21 chỉ báo vào lớp ẩn thứ nhất. ReLU tạo phi tuyến; dropout 0,15 được áp dụng khi huấn luyện. Lớp ẩn thứ hai có 32 nút, sau đó lớp cuối trả một logit. Sigmoid được áp dụng khi suy luận để tạo score trong khoảng $[0,1]$.
+
+\reportcode{train_setup}{Chuẩn hóa dữ liệu và khởi tạo bộ tối ưu.}
+
+Scaler chỉ được fit bằng \texttt{train[FEATURES]}; cùng scaler đó biến đổi train và validation. Tensor đặc trưng có 21 cột, còn \texttt{reshape(-1,1)} đưa nhãn về cùng dạng với đầu ra mạng. Loss là \texttt{BCEWithLogitsLoss}; Adam sử dụng learning rate 0,001 và weight decay $10^{-4}$. Biến \texttt{best\_loss} lưu loss validation thấp nhất, còn \texttt{stale} đếm số epoch liên tiếp không cải thiện.
+
+\section{Vòng huấn luyện và lưu checkpoint}
+\reportcode{train_loop}{Huấn luyện minibatch và chọn checkpoint theo validation.}
+
+Ở đầu mỗi epoch, \texttt{net.train()} bật chế độ huấn luyện và \texttt{randperm} xáo trộn thứ tự mẫu. Các chỉ số được chia thành minibatch 256 phần tử. Trong mỗi batch, gradient cũ được xóa, mạng tính logit, loss lan truyền ngược rồi Adam cập nhật tham số. Tổng loss được nhân với số mẫu của batch để tính trung bình theo mẫu.
+
+Sau vòng minibatch, \texttt{net.eval()} tắt dropout; \texttt{torch.no\_grad()} tính loss validation mà không lưu đồ thị gradient. Khi loss giảm hơn $10^{-5}$, chương trình sao chép \texttt{state\_dict} và đặt lại \texttt{stale}. Nếu 10 epoch liên tiếp không đạt mức cải thiện này, vòng lặp kết thúc. Mạng cuối cùng nạp lại checkpoint có loss validation thấp nhất; ở lần chạy báo cáo, checkpoint thuộc epoch 21.
+
+\section{Chọn ngưỡng và mô hình mặc định}
+\reportcode{threshold}{Chọn ngưỡng phân loại bằng F1 validation.}
+
+Hàm thử 151 ngưỡng từ 0,05 đến 0,80. Với từng ngưỡng $t$, dự đoán nhị phân là \texttt{p >= t}; hàm trả ngưỡng có F1 cao nhất. Thứ tự tăng dần của danh sách ngưỡng làm cho trường hợp bằng điểm chọn ngưỡng nhỏ hơn.
+
+\reportcode{model_selection}{Tổng hợp validation và lưu quyết định chọn mô hình.}
+
+Mỗi mô hình trả score trên validation, sau đó tính các chỉ số tại ngưỡng riêng. Dummy được giữ trong bảng đối chứng nhưng bị loại khỏi nhóm ứng viên mặc định. Các mô hình còn lại được sắp giảm dần theo Average Precision; tên mô hình đứng đầu và các ngưỡng được ghi vào manifest. Tập test được đánh giá ở bước sau bằng các quyết định đã lưu này.
+
+\section{Suy luận từ mô hình đã lưu}
+\reportcode{inference}{Hàm dự đoán của lớp RiskModel.}
+
+Giá trị \texttt{default} được thay bằng tên trong manifest. Câu lệnh \texttt{[FEATURES]} cố định thứ tự 21 cột, tránh thay đổi vị trí đặc trưng khi hồ sơ JSON có thứ tự khóa khác. Nhánh MLP áp dụng scaler, tạo tensor, chạy mạng ở chế độ suy luận rồi lấy sigmoid; các mô hình sklearn trả cột xác suất của lớp 1 qua \texttt{predict\_proba}.
+
+Ngưỡng được đọc theo đúng model ID. Hàm trả score, threshold và biến \texttt{positive} từ phép so sánh giữa hai giá trị. Các trường này được dùng trực tiếp để dựng vòng điểm và nhãn trên dashboard.
+
+\section{Truy xuất tri thức}
+\reportcode{retrieval}{TF-IDF kết hợp mở rộng khái niệm một bước.}
+
+Hàm chuẩn hóa query rồi tính cosine similarity với ma trận TF-IDF của 12 ghi chú. Biến \texttt{concepts} chứa những khái niệm có alias khớp query theo ranh giới từ. Khi bật graph, các đích của cạnh đi ra từ tập này được thêm vào \texttt{expanded}; vòng mở rộng chỉ chạy trên tập ban đầu nên dừng ở một bước.
+
+Với mỗi ghi chú, \texttt{matched} xác định các khái niệm giao với tập mở rộng. Bonus bằng 0,12 nếu có liên kết phù hợp. Bộ lọc yêu cầu khớp concept trực tiếp hoặc có ít nhất hai token trùng ở tiêu đề/từ khóa; cosine dưới 0,10 cũng bị loại nếu không khớp trực tiếp. Kết quả được sắp theo score giảm dần, dùng ID để xử lý hòa điểm và lấy tối đa $k=3$ ghi chú.
+
+\section{Cập nhật bảng Q}
+\reportcode{q_learning}{Huấn luyện Q-learning cho tác tử nhắc nhật ký.}
+
+Mảng \texttt{q} có kích thước $8\times3$, tương ứng tám trạng thái và ba hành động. Bộ sinh ngẫu nhiên được tạo từ seed truyền vào. Ở mỗi episode, tác tử chọn hành động ngẫu nhiên với xác suất epsilon; các lượt còn lại chọn \texttt{argmax} của hàng Q ứng với trạng thái hiện tại.
+
+Hàm \texttt{transition} trả trạng thái kế tiếp và reward. Dòng cập nhật sử dụng learning rate 0,08, hệ số chiết khấu 0,92 và giá trị Q lớn nhất tại trạng thái kế tiếp. Sau 28 ngày, reward trung bình của episode được đưa vào history. Hàm trả cả bảng Q và DataFrame lịch sử; thí nghiệm gọi hàm với năm seed 42--46.
+
+\section{Giao tiếp và kiểm tra kết quả tác tử}
+\reportcode{message_bus}{Gửi yêu cầu và ghi thông điệp phản hồi qua MessageBus.}
+
+MessageBus ghi một REQUEST trước khi gọi handler của bên nhận. Thời gian thực thi được đo bằng \texttt{perf\_counter}. Kết quả thành công được ghi dưới dạng INFORM; exception được chuyển thành dữ liệu có trạng thái failure và thông điệp FAILURE. Lỗi tại một handler vẫn có mặt trong trace để Coordinator và Council xử lý.
+
+\reportcode{council}{Các điều kiện kiểm tra của Council.}
+
+Council duyệt từng proposal, tích lũy lý do bác trong \texttt{reasons}. Các điều kiện gồm đề xuất loại medication, lỗi failure, kết quả tri thức thiếu bằng chứng hoặc chứa ID ngoài kho và score ngoài khoảng $[0,1]$. Hàm chỉ trả approved khi danh sách lý do rỗng; các trường hợp còn lại trả rejected kèm lý do.
+
+\section{Điều phối một lượt xử lý}
+\reportcode{coordination}{Nhánh tiếp nhận, gọi chuyên gia và tổng hợp của Coordinator.}
+
+Intake được gọi trước. Trạng thái khác completed tạo kết quả kết thúc với danh sách proposal rỗng. Nếu tiếp nhận thành công, tác vụ consult gọi cả Risk, Knowledge và Reminder; các tác vụ riêng chỉ gọi chuyên gia tương ứng. Tất cả proposal được chuyển tới Council trước khi Advisor tổng hợp.
+
+Khi Council bác kết quả, trạng thái chung là rejected. Khi được duyệt, Advisor trả văn bản tổng hợp; trạng thái chung vẫn là needs\_input nếu một chuyên gia yêu cầu bổ sung dữ liệu, hoặc insufficient\_evidence nếu nhánh tri thức thiếu căn cứ. Việc duyệt cấu trúc proposal được tách khỏi tình trạng hoàn thành của nhiệm vụ.
+
+\section{Liên kết mã nguồn với giao diện}
+\reportcode{ui_presets}{Callback của ba kịch bản chạy nhanh.}
+
+Callback đặt tác vụ, câu hỏi và nguồn hồ sơ vào \texttt{st.session\_state}, sau đó gọi \texttt{system.run}. Kết quả được lưu vào khóa \texttt{result}. Các kịch bản dùng cùng tham số nhắc việc và model đang được chọn trên giao diện, nên thao tác chạy nhanh đi qua cùng luồng xử lý với nút Bắt đầu phân tích.
+
+\reportcode{ui_flow}{Dựng trạng thái hiển thị của bảy vai trò tác tử.}
+
+Hàm lấy các phản hồi trong trace theo tên tác tử và ánh xạ completed/approved sang trạng thái done. Các phản hồi khác được hiển thị attention; tác tử chưa có phản hồi giữ trạng thái idle. Coordinator dùng trạng thái tổng của phiên. Màu của các thẻ trên dashboard phản ánh vết xử lý đã ghi.
+
+\section{Notebook và các tệp kết quả}
 \begin{table}[H]\centering\small
-\caption{Đường đi từ yêu cầu tới source code.}
-\begin{tabularx}{\textwidth}{@{}p{3cm}p{3.8cm}Y@{}}\toprule
-Module & Hàm hoặc lớp & Vai trò \\\midrule
-data.py & load\_data, read\_database & Kiểm tra checksum/split, dựng SQLite và đọc bảng nghiên cứu. \\
-models.py & train\_all, RiskModel & Train/checkpoint/threshold/test; nạp artifact để suy luận. \\
-knowledge.py & KnowledgeBase & TF-IDF, concept expansion, bằng chứng và trả lời trích xuất. \\
-rl.py & transition, train\_q & Mô phỏng một bước và cập nhật Q; xuất lịch sử/đối chứng. \\
-system.py & MessageBus, DiabetesSystem & Hợp đồng thông điệp, điều phối, tổng hợp và audit SQLite. \\
-evaluation.py & evaluate\_all & Bộ truy xuất, kịch bản hệ thống và inject lỗi Council. \\\bottomrule
+\caption{Nội dung và đầu ra của bốn notebook.}
+\begin{tabularx}{\textwidth}{@{}p{1cm}p{4.2cm}Y@{}}\toprule
+Số & Nội dung & Đầu ra chính \\\midrule
+01 & Dữ liệu và MLP & Bộ chia tập, checkpoint, scaler, bảng validation/test và prediction từng dòng. \\
+02 & Tri thức và đồ thị & Danh mục ghi chú, ví dụ truy xuất và đánh giá 24 câu hỏi. \\
+03 & Q-learning & Bảng Q seed 42, lịch sử năm seed và so sánh policy. \\
+04 & Tích hợp hệ đa tác tử & Kết quả hội chẩn, trace, nhánh dữ liệu thiếu/cảnh báo và đánh giá hệ thống. \\\bottomrule
 \end{tabularx}
 \end{table}
 
-\section{Notebook 01 từ dữ liệu tới model đã lưu}
-Notebook đầu tiên kiểm tra nguồn, hiển thị split và dữ liệu, tạo SQLite, xem kiến trúc rồi thực thi \texttt{train\_all}. Vòng lặp minibatch ở module thực hiện forward, loss, backward và optimizer step. Sau mỗi epoch, mạng chuyển sang eval để tính BCE validation, không bật dropout. Weight tốt nhất được sao chép độc lập trước khi những epoch sau thay đổi model.
-
-\begin{figure}[H]\centering
-\includegraphics[width=\textwidth]{images/cell_train.png}
-\caption{Cell huấn luyện thật trong notebook 01 và một phần output đã lưu. Nội dung ảnh được dựng từ source/output của ipynb đã thực thi.}
-\end{figure}
-
-Weight MLP lưu bằng state\_dict, scaler lưu bằng joblib. Khi nạp lại, chương trình dựng cùng kiến trúc rồi load weight ở CPU với weights\_only. Baseline sklearn được lưu riêng. Không nạp artifact joblib từ nguồn không tin cậy; trong gói này chúng được tạo bởi source của chính project.
-
-Cell cuối đối chiếu một score suy luận từ weight đã nạp với prediction CSV của cùng row\_id trên test, sai lệch cho phép $10^{-6}$. Kiểm tra này xác nhận tính nhất quán của đường lưu/nạp và inference, không bổ sung bằng chứng độc lập về khả năng tổng quát hóa.
-
-\section{Notebook 02 từ query tới nguồn}
-Notebook thứ hai liệt kê 12 ghi chú và quan hệ, minh họa query HbA1c và thiếu máu, hiển thị lexical score, score sau graph và matched\_concepts. Cell sau kiểm tra câu hỏi ngoài chủ đề và cách viết không dấu. Cuối notebook là bảng 24 câu có/không có graph và source hàm truy xuất.
-
-\begin{figure}[H]\centering
-\includegraphics[width=\textwidth]{images/cell_retrieval.png}
-\caption{Ví dụ truy xuất trong notebook 02; ID nguồn gắn với đoạn được trả về.}
-\end{figure}
-
-Để tái lập, người đọc có thể sửa query của cell minh họa mà không thay bộ câu đánh giá. Nếu thay thuật toán hoặc KB sau khi xem kết quả bộ câu, cần xem đây là kiểm tra trong phát triển và bổ sung bộ đánh giá độc lập khi muốn tuyên bố hiệu năng.
-
-\section{Notebook 03 học và kiểm tra policy}
-Notebook thứ ba in trực tiếp hàm transition để người đọc nhìn thấy các giả định về phản ứng. Cell train thực hiện năm seed, xuất Q-table seed 42, history và bảng đối chứng. Các Q-value được đặt cạnh gap/fatigue, rồi giải mã argmax thành tên hành động.
-
-\begin{figure}[H]\centering
-\includegraphics[width=\textwidth]{images/cell_rl.png}
-\caption{Cell đọc Q-table thực tế của notebook 03 và chính sách cho tám trạng thái.}
-\end{figure}
-
-Một phép kiểm tra riêng chạy hai lượt cùng seed với ít episode và xác nhận hai Q-table bằng nhau. Đây là kiểm tra bộ sinh ngẫu nhiên và luồng cập nhật, không phải kiểm tra Q-learning đã hội tụ tới tối ưu. Project không đưa ra chứng minh hội tụ thực nghiệm chỉ dựa trên đường học hữu hạn.
-
-\section{Notebook 04 tích hợp và kiểm tra veto}
-Notebook cuối nạp hệ thống, sử dụng hồ sơ minh họa thuộc train, chạy consult và hiển thị 12 thông điệp. Tiếp đó là hồ sơ thiếu chỉ có BMI, số đo glucose thấp, proposal thuốc và ID bằng chứng giả. Người đọc có thể quan sát trạng thái needs\_input, urgent và rejected theo từng tình huống.
-
-\begin{figure}[H]\centering
-\includegraphics[width=\textwidth]{images/cell_system.png}
-\caption{Kiểm tra nhánh urgent trong notebook 04; trace cho thấy chưa gọi mô hình Risk.}
-\end{figure}
-
-Cuối notebook chạy lại bộ đánh giá và assert toàn bộ kịch bản đạt. Script \path{execute_notebooks.py} khởi tạo kernel bằng đúng Python gọi script, chạy tuần tự trong các tiến trình riêng để cô lập vòng đời kernel trên Windows, lưu output vào ipynb, kiểm tra execution count và lỗi cell, rồi đóng kernel. Không tạo output mẫu thay cho việc thực thi.
-
-\section{Lưu trữ và chế độ local}
-CSDL \texttt{research.sqlite3} được dựng lại từ CSV nghiên cứu. Audit demo là database khác; mặc định ứng dụng không tự lưu câu hỏi hoặc đầu vào người dùng. Khi người trình diễn chủ động chọn lưu, câu hỏi, câu trả lời và trace được ghi tại \texttt{demo\_audit.sqlite3}. Nội dung câu hỏi vẫn có thể chứa thông tin người dùng nhập nên không dùng hồ sơ thật trong lớp học.
-
-SQLite dùng placeholder để ghi JSON và khóa run\_id. Không có đăng nhập, phân quyền, mã hóa database hoặc quy trình vận hành cho dữ liệu bệnh nhân. Server bind localhost và ứng dụng không gửi nội dung tới dịch vụ mô hình bên ngoài. Các URL nguồn chỉ để người dùng mở khi cần đọc tài liệu gốc.
+Bốn notebook có tổng cộng 26 code cell đã thực thi. Mô hình và các bảng số liệu được lưu trong \path{artifacts/}; nhật ký demo tùy chọn được lưu riêng tại \path{artifacts/demo_audit.sqlite3}.

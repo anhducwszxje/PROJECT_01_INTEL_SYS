@@ -1,8 +1,8 @@
 \chapter{Dữ liệu và mô hình học sâu}
 \section{Nguồn dữ liệu và ý nghĩa nhãn}
-Nguồn công khai là CDC Diabetes Health Indicators trên UCI \cite{uci}. CSV nguồn có 253.680 dòng với 21 đặc trưng và cột nhãn nhị phân. Project sử dụng mẫu nghiên cứu 24.000 dòng đã được đóng băng trong workspace trước đó. Metadata lưu cả SHA256 nguồn và SHA256 mẫu, URL và quy trình chia tập; hàm đọc dừng nếu checksum mẫu không còn khớp.
+Nguồn công khai là CDC Diabetes Health Indicators trên UCI \cite{uci}. CSV nguồn có 253.680 dòng với 21 đặc trưng và cột nhãn nhị phân. Project sử dụng mẫu nghiên cứu cố định gồm 24.000 dòng. Metadata lưu cả SHA256 nguồn và SHA256 mẫu, URL và quy trình chia tập; hàm đọc dừng nếu checksum mẫu không còn khớp.
 
-Nhãn được đổi tên từ \texttt{Diabetes\_binary} thành \texttt{target}. Trong diễn giải của project, lớp 1 là nhãn gộp tiền tiểu đường/tiểu đường theo mã UCI, còn lớp 0 là không có nhãn đó trong dữ liệu. Không có căn cứ từ cột này để kết luận riêng type 2 hoặc nguy cơ mắc bệnh sau một khoảng thời gian. Trang UCI có phần giới thiệu chưa thống nhất với bảng số đặc trưng; project bám schema của CSV thực tế và ghi nhận khác biệt trong provenance.
+Nhãn được đổi tên từ \texttt{Diabetes\_binary} thành \texttt{target}. Trong diễn giải của project, lớp 1 là nhãn gộp tiền tiểu đường/tiểu đường theo mã UCI, còn lớp 0 là không có nhãn đó trong dữ liệu. Nhãn mô tả trạng thái khảo sát gộp, không phân biệt riêng type 2 hoặc thời điểm phát bệnh. Trang UCI có phần giới thiệu chưa thống nhất với bảng số đặc trưng; project bám schema của CSV thực tế và ghi nhận khác biệt trong provenance.
 
 \section{Đặc trưng và mã hóa}
 Các biến bao gồm huyết áp/cholesterol cao, BMI, hút thuốc, tiền sử đột quỵ hoặc bệnh tim, vận động, rau/trái cây, bảo hiểm và rào cản chi phí, tự đánh giá sức khỏe, số ngày sức khỏe kém, khó đi lại, giới tính và các nhóm tuổi/học vấn/thu nhập.
@@ -27,7 +27,7 @@ Các mã có thứ tự được đưa vào dưới dạng số như một lựa
 \input{tables/splits.tex}
 Split được kế thừa nguyên từ tập nghiên cứu, với seed 42/43 ở bước chia theo nhóm. Mỗi nhóm được định nghĩa bởi fingerprint của cùng vector 21 đặc trưng. Các fingerprint giống nhau không xuất hiện ở hai tập khác nhau. Hàm \texttt{load\_data} còn tính lại fingerprint để không chỉ tin cột group được lưu sẵn.
 
-Không có định danh bệnh nhân để chứng minh mọi bản ghi của một người đều được gom cùng split. Vì vậy, phát biểu chính xác là tách nhóm vector trùng nhau, không phải đã bảo đảm tách theo người bệnh. Phân bố nhãn giữa các split có chênh lệch nhỏ do chia theo nhóm, không ép cân bằng thành 50/50.
+Dữ liệu thiếu định danh bệnh nhân, nên phép chia chỉ kiểm soát các vector trùng nhau giữa các split. Phân bố nhãn giữa các split có chênh lệch nhỏ do chia theo nhóm, không ép cân bằng thành 50/50.
 
 Scaler chỉ fit trên train. Validation được dùng để chọn epoch, model mặc định và ngưỡng. Test không được dùng để chọn lại các quyết định đó. Việc chạy lại notebook sử dụng cùng source, seed và split; các lượt lặp để xác nhận tái lập không được coi là các lần thử độc lập.
 
@@ -43,7 +43,7 @@ Số tham số học là $21\cdot64+64+64\cdot32+32+32+1=3.521$. Đầu ra logit
 \begin{equation}
 \mathcal{L}=-\frac{1}{N}\sum_{i=1}^{N}\left[y_i\log\sigma(z_i)+(1-y_i)\log(1-\sigma(z_i))\right].
 \end{equation}
-Không dùng trọng số lớp hoặc tái lấy mẫu để đổi tiên nghiệm. Dù vậy, sigmoid không được coi là xác suất lâm sàng đã hiệu chỉnh. Project chỉ báo Brier score mô tả sai số xác suất trên tập test nội bộ; chưa có calibration/external validation cho quần thể mục tiêu.
+Huấn luyện giữ phân bố nhãn gốc, không dùng trọng số lớp hoặc tái lấy mẫu. Brier score đo sai số của score trên test nội bộ; calibration trên quần thể mục tiêu chưa được đánh giá.
 
 \begin{table}[H]\centering\small
 \caption{Cấu hình huấn luyện MLP được khóa trong source.}
@@ -61,7 +61,7 @@ Checkpoint & Weight có BCE validation thấp nhất, không phải epoch cuối
 \section{Các mô hình đối chứng}
 Logistic Regression là pipeline StandardScaler và bộ phân loại tuyến tính với tối đa 1.000 vòng lặp. Random Forest dùng 160 cây, ít nhất 8 mẫu ở lá, max\_features bằng căn bậc hai và seed 42. DummyClassifier với strategy prior luôn trả phân bố nhãn train. Đây là các cấu hình cố định của project, chưa thực hiện tìm kiếm siêu tham số toàn diện.
 
-Đối chứng giúp kiểm tra xem mạng nhiều lớp có tạo khác biệt so với cách tiếp cận đơn giản hơn trên dữ liệu bảng. Không giả định học sâu luôn có ưu thế. Model mặc định được chọn bằng Average Precision validation, và có thể là Random Forest dù MLP là thành phần học sâu cần trình bày.
+Các mô hình dùng cùng split và đặc trưng để đối chiếu kết quả trên dữ liệu bảng. Model mặc định là mô hình có Average Precision validation cao nhất trong nhóm MLP, Logistic Regression và Random Forest.
 
 \section{Ngưỡng và chỉ số đánh giá}
 Mỗi model chọn ngưỡng từ 151 ứng viên đều nhau trong khoảng 0,05--0,80, tối đa hóa F1 validation; nếu bằng điểm, chọn ứng viên xuất hiện đầu tiên. Sau đó ngưỡng được giữ nguyên khi đánh giá test. Cách này phục vụ benchmark kỹ thuật; không tối ưu chi phí lâm sàng của âm tính giả/dương tính giả.
