@@ -1,0 +1,49 @@
+case,graph,query,expected_id,returned,hit_at_1,hit_at_3,reciprocal_rank
+1,False,Tiểu đường là gì và insulin có vai trò gì?,D01,"D01,D02",1,1,1.0
+2,False,Tìm hiểu khái niệm đái tháo đường,D01,D01,1,1,1.0
+3,False,Phân biệt type 1 type 2 và thai kỳ,D02,D02,1,1,1.0
+4,False,Có những loại tiểu đường nào?,D02,"D02,D01",1,1,1.0
+5,False,Cần xét nghiệm để xác nhận chẩn đoán không?,D03,D03,1,1,1.0
+6,False,Điểm mô hình thay được xét nghiệm không?,D03,D03,1,1,1.0
+7,False,Nhịn ăn bao lâu trước xét nghiệm lúc đói?,D04,"D04,D03",1,1,1.0
+8,False,Glucose lúc đói khác số đo bất kỳ thế nào?,D04,D04,1,1,1.0
+9,False,Hạ đường huyết là gì?,D05,D05,1,1,1.0
+10,False,Đường huyết thấp dưới 70 mg có đáng lưu ý?,D05,D05,1,1,1.0
+11,False,HbA1c phản ánh mấy tháng?,D06,D06,1,1,1.0
+12,False,A1C có phải số đo tức thời không?,D06,D06,1,1,1.0
+13,False,Thiếu máu ảnh hưởng kết quả ra sao?,D07,D07,1,1,1.0
+14,False,Hemoglobin làm sai lệch HbA1c không?,D07,"D07,D06",1,1,1.0
+15,False,Nhật ký cần ghi những gì?,D08,D08,1,1,1.0
+16,False,Lợi ích của ghi chép theo dõi?,D08,D08,1,1,1.0
+17,False,Mục tiêu và kế hoạch chăm sóc có giống mọi người?,D09,D09,1,1,1.0
+18,False,Trao đổi về thuốc với ai?,D09,D09,1,1,1.0
+19,False,Ăn uống và khẩu phần nên lưu ý gì?,D10,D10,1,1,1.0
+20,False,Phương pháp đĩa ăn là gì?,D10,D10,1,1,1.0
+21,False,Tinh bột tác động thế nào?,D11,D11,1,1,1.0
+22,False,Carbohydrate ảnh hưởng đường huyết không?,D11,"D11,D05",1,1,1.0
+23,False,Vận động có giúp quản lý bệnh không?,D12,D12,1,1,1.0
+24,False,Tập luyện và đi bộ cần lưu ý gì?,D12,D12,1,1,1.0
+1,True,Tiểu đường là gì và insulin có vai trò gì?,D01,"D01,D02",1,1,1.0
+2,True,Tìm hiểu khái niệm đái tháo đường,D01,D01,1,1,1.0
+3,True,Phân biệt type 1 type 2 và thai kỳ,D02,D02,1,1,1.0
+4,True,Có những loại tiểu đường nào?,D02,"D02,D01",1,1,1.0
+5,True,Cần xét nghiệm để xác nhận chẩn đoán không?,D03,D03,1,1,1.0
+6,True,Điểm mô hình thay được xét nghiệm không?,D03,D03,1,1,1.0
+7,True,Nhịn ăn bao lâu trước xét nghiệm lúc đói?,D04,"D04,D03",1,1,1.0
+8,True,Glucose lúc đói khác số đo bất kỳ thế nào?,D04,D04,1,1,1.0
+9,True,Hạ đường huyết là gì?,D05,D05,1,1,1.0
+10,True,Đường huyết thấp dưới 70 mg có đáng lưu ý?,D05,D05,1,1,1.0
+11,True,HbA1c phản ánh mấy tháng?,D06,D06,1,1,1.0
+12,True,A1C có phải số đo tức thời không?,D06,D06,1,1,1.0
+13,True,Thiếu máu ảnh hưởng kết quả ra sao?,D07,D07,1,1,1.0
+14,True,Hemoglobin làm sai lệch HbA1c không?,D07,"D07,D06",1,1,1.0
+15,True,Nhật ký cần ghi những gì?,D08,D08,1,1,1.0
+16,True,Lợi ích của ghi chép theo dõi?,D08,D08,1,1,1.0
+17,True,Mục tiêu và kế hoạch chăm sóc có giống mọi người?,D09,D09,1,1,1.0
+18,True,Trao đổi về thuốc với ai?,D09,D09,1,1,1.0
+19,True,Ăn uống và khẩu phần nên lưu ý gì?,D10,D10,1,1,1.0
+20,True,Phương pháp đĩa ăn là gì?,D10,D10,1,1,1.0
+21,True,Tinh bột tác động thế nào?,D11,D11,1,1,1.0
+22,True,Carbohydrate ảnh hưởng đường huyết không?,D11,"D11,D05",1,1,1.0
+23,True,Vận động có giúp quản lý bệnh không?,D12,D12,1,1,1.0
+24,True,Tập luyện và đi bộ cần lưu ý gì?,D12,D12,1,1,1.0

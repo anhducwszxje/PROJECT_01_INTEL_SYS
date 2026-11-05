@@ -1,0 +1,212 @@
+{
+  "concepts": [
+    {
+      "id": "diabetes",
+      "aliases": [
+        "tiểu đường là gì",
+        "insulin",
+        "đái tháo đường"
+      ]
+    },
+    {
+      "id": "types",
+      "aliases": [
+        "type 1",
+        "type 2",
+        "thai kỳ",
+        "phân biệt"
+      ]
+    },
+    {
+      "id": "tests",
+      "aliases": [
+        "xét nghiệm",
+        "chẩn đoán",
+        "xác nhận"
+      ]
+    },
+    {
+      "id": "fasting",
+      "aliases": [
+        "lúc đói",
+        "nhịn ăn",
+        "tám giờ",
+        "8 giờ"
+      ]
+    },
+    {
+      "id": "hypoglycemia",
+      "aliases": [
+        "hạ đường huyết",
+        "đường huyết thấp",
+        "70 mg",
+        "run tay"
+      ]
+    },
+    {
+      "id": "a1c",
+      "aliases": [
+        "hba1c",
+        "a1c",
+        "ba tháng",
+        "trung bình"
+      ]
+    },
+    {
+      "id": "a1c_limits",
+      "aliases": [
+        "thiếu máu",
+        "hemoglobin",
+        "sai lệch hba1c"
+      ]
+    },
+    {
+      "id": "journal",
+      "aliases": [
+        "nhật ký",
+        "ghi chép",
+        "ghi nhận",
+        "theo dõi"
+      ]
+    },
+    {
+      "id": "care",
+      "aliases": [
+        "mục tiêu",
+        "thuốc",
+        "kế hoạch chăm sóc"
+      ]
+    },
+    {
+      "id": "nutrition",
+      "aliases": [
+        "ăn uống",
+        "dinh dưỡng",
+        "đĩa ăn",
+        "khẩu phần"
+      ]
+    },
+    {
+      "id": "carbs",
+      "aliases": [
+        "carbohydrate",
+        "carb",
+        "tinh bột",
+        "đếm carb"
+      ]
+    },
+    {
+      "id": "activity",
+      "aliases": [
+        "vận động",
+        "đi bộ",
+        "tập luyện",
+        "thể dục"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "source": "diabetes",
+      "target": "tests",
+      "type": "assessed_by"
+    },
+    {
+      "source": "tests",
+      "target": "fasting",
+      "type": "includes"
+    },
+    {
+      "source": "tests",
+      "target": "a1c",
+      "type": "includes"
+    },
+    {
+      "source": "a1c",
+      "target": "a1c_limits",
+      "type": "has_limitation"
+    },
+    {
+      "source": "diabetes",
+      "target": "care",
+      "type": "managed_with"
+    },
+    {
+      "source": "care",
+      "target": "journal",
+      "type": "uses"
+    },
+    {
+      "source": "nutrition",
+      "target": "carbs",
+      "type": "includes"
+    },
+    {
+      "source": "care",
+      "target": "activity",
+      "type": "includes"
+    }
+  ],
+  "evidence_edges": [
+    {
+      "source": "D01",
+      "target": "diabetes",
+      "type": "explains"
+    },
+    {
+      "source": "D02",
+      "target": "types",
+      "type": "explains"
+    },
+    {
+      "source": "D03",
+      "target": "tests",
+      "type": "explains"
+    },
+    {
+      "source": "D04",
+      "target": "fasting",
+      "type": "explains"
+    },
+    {
+      "source": "D05",
+      "target": "hypoglycemia",
+      "type": "explains"
+    },
+    {
+      "source": "D06",
+      "target": "a1c",
+      "type": "explains"
+    },
+    {
+      "source": "D07",
+      "target": "a1c_limits",
+      "type": "explains"
+    },
+    {
+      "source": "D08",
+      "target": "journal",
+      "type": "explains"
+    },
+    {
+      "source": "D09",
+      "target": "care",
+      "type": "explains"
+    },
+    {
+      "source": "D10",
+      "target": "nutrition",
+      "type": "explains"
+    },
+    {
+      "source": "D11",
+      "target": "carbs",
+      "type": "explains"
+    },
+    {
+      "source": "D12",
+      "target": "activity",
+      "type": "explains"
+    }
+  ]
+}

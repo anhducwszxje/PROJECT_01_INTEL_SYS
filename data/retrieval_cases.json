@@ -1,0 +1,98 @@
+[
+  {
+    "query": "Tiểu đường là gì và insulin có vai trò gì?",
+    "expected_id": "D01"
+  },
+  {
+    "query": "Tìm hiểu khái niệm đái tháo đường",
+    "expected_id": "D01"
+  },
+  {
+    "query": "Phân biệt type 1 type 2 và thai kỳ",
+    "expected_id": "D02"
+  },
+  {
+    "query": "Có những loại tiểu đường nào?",
+    "expected_id": "D02"
+  },
+  {
+    "query": "Cần xét nghiệm để xác nhận chẩn đoán không?",
+    "expected_id": "D03"
+  },
+  {
+    "query": "Điểm mô hình thay được xét nghiệm không?",
+    "expected_id": "D03"
+  },
+  {
+    "query": "Nhịn ăn bao lâu trước xét nghiệm lúc đói?",
+    "expected_id": "D04"
+  },
+  {
+    "query": "Glucose lúc đói khác số đo bất kỳ thế nào?",
+    "expected_id": "D04"
+  },
+  {
+    "query": "Hạ đường huyết là gì?",
+    "expected_id": "D05"
+  },
+  {
+    "query": "Đường huyết thấp dưới 70 mg có đáng lưu ý?",
+    "expected_id": "D05"
+  },
+  {
+    "query": "HbA1c phản ánh mấy tháng?",
+    "expected_id": "D06"
+  },
+  {
+    "query": "A1C có phải số đo tức thời không?",
+    "expected_id": "D06"
+  },
+  {
+    "query": "Thiếu máu ảnh hưởng kết quả ra sao?",
+    "expected_id": "D07"
+  },
+  {
+    "query": "Hemoglobin làm sai lệch HbA1c không?",
+    "expected_id": "D07"
+  },
+  {
+    "query": "Nhật ký cần ghi những gì?",
+    "expected_id": "D08"
+  },
+  {
+    "query": "Lợi ích của ghi chép theo dõi?",
+    "expected_id": "D08"
+  },
+  {
+    "query": "Mục tiêu và kế hoạch chăm sóc có giống mọi người?",
+    "expected_id": "D09"
+  },
+  {
+    "query": "Trao đổi về thuốc với ai?",
+    "expected_id": "D09"
+  },
+  {
+    "query": "Ăn uống và khẩu phần nên lưu ý gì?",
+    "expected_id": "D10"
+  },
+  {
+    "query": "Phương pháp đĩa ăn là gì?",
+    "expected_id": "D10"
+  },
+  {
+    "query": "Tinh bột tác động thế nào?",
+    "expected_id": "D11"
+  },
+  {
+    "query": "Carbohydrate ảnh hưởng đường huyết không?",
+    "expected_id": "D11"
+  },
+  {
+    "query": "Vận động có giúp quản lý bệnh không?",
+    "expected_id": "D12"
+  },
+  {
+    "query": "Tập luyện và đi bộ cần lưu ý gì?",
+    "expected_id": "D12"
+  }
+]

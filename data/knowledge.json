@@ -1,0 +1,202 @@
+[
+  {
+    "id": "D01",
+    "title": "Tiểu đường và insulin",
+    "concepts": [
+      "diabetes"
+    ],
+    "keywords": [
+      "tiểu đường là gì",
+      "insulin",
+      "đái tháo đường"
+    ],
+    "content": "Tiểu đường liên quan đến glucose máu cao và khả năng tạo hoặc sử dụng insulin. Thông tin này giải thích khái niệm chung, không xác định bệnh của một người.",
+    "source_title": "NIDDK What Is Diabetes",
+    "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes",
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "D02",
+    "title": "Các loại tiểu đường",
+    "concepts": [
+      "types"
+    ],
+    "keywords": [
+      "type 1",
+      "type 2",
+      "thai kỳ",
+      "phân biệt"
+    ],
+    "content": "Type 1, type 2 và tiểu đường thai kỳ có cơ chế và hoàn cảnh khác nhau. Không suy ra loại bệnh từ điểm dự đoán nhị phân của project.",
+    "source_title": "NIDDK What Is Diabetes",
+    "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes",
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "D03",
+    "title": "Xét nghiệm và xác nhận",
+    "concepts": [
+      "tests"
+    ],
+    "keywords": [
+      "xét nghiệm",
+      "chẩn đoán",
+      "xác nhận"
+    ],
+    "content": "Chẩn đoán dựa vào xét nghiệm phù hợp và đánh giá của nhân viên y tế; thường cần xác nhận lại. Điểm mô hình khảo sát không thay thế xét nghiệm.",
+    "source_title": "NIDDK Diabetes Tests and Diagnosis",
+    "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis",
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "D04",
+    "title": "Glucose lúc đói",
+    "concepts": [
+      "fasting"
+    ],
+    "keywords": [
+      "lúc đói",
+      "nhịn ăn",
+      "tám giờ",
+      "8 giờ"
+    ],
+    "content": "Xét nghiệm glucose lúc đói cần nhịn ăn ít nhất tám giờ theo hướng dẫn xét nghiệm. Phải phân biệt số đo lúc đói với số đo ở thời điểm bất kỳ.",
+    "source_title": "NIDDK Diabetes Tests and Diagnosis",
+    "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis",
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "D05",
+    "title": "Đường huyết thấp",
+    "concepts": [
+      "hypoglycemia"
+    ],
+    "keywords": [
+      "hạ đường huyết",
+      "đường huyết thấp",
+      "70 mg",
+      "run tay"
+    ],
+    "content": "Theo CDC, glucose dưới 70 mg/dL được coi là thấp và cần xử trí kịp thời. Nếu không tỉnh táo hoặc không tự xử trí được, cần trợ giúp y tế khẩn cấp.",
+    "source_title": "CDC Treatment of Low Blood Sugar",
+    "source_url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html",
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "D06",
+    "title": "HbA1c phản ánh thời gian dài",
+    "concepts": [
+      "a1c"
+    ],
+    "keywords": [
+      "hba1c",
+      "a1c",
+      "ba tháng",
+      "trung bình"
+    ],
+    "content": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng, khác số đo tức thời. Cần đọc kết quả cùng bối cảnh và hướng dẫn chuyên môn.",
+    "source_title": "NIDDK The A1C Test and Diabetes",
+    "source_url": "https://www.niddk.nih.gov/health-information/diagnostic-tests/a1c-test",
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "D07",
+    "title": "Giới hạn của HbA1c",
+    "concepts": [
+      "a1c_limits"
+    ],
+    "keywords": [
+      "thiếu máu",
+      "hemoglobin",
+      "sai lệch hba1c"
+    ],
+    "content": "Một số tình trạng ảnh hưởng hồng cầu hoặc hemoglobin có thể làm HbA1c kém tin cậy. Khi kết quả không phù hợp, cần trao đổi với nhân viên y tế.",
+    "source_title": "NIDDK The A1C Test and Diabetes",
+    "source_url": "https://www.niddk.nih.gov/health-information/diagnostic-tests/a1c-test",
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "D08",
+    "title": "Nhật ký theo dõi",
+    "concepts": [
+      "journal"
+    ],
+    "keywords": [
+      "nhật ký",
+      "ghi chép",
+      "ghi nhận",
+      "theo dõi"
+    ],
+    "content": "Theo dõi và trao đổi kết quả với nhóm chăm sóc giúp quản lý bệnh. Project gợi ý ghi giá trị, thời gian, đơn vị và bối cảnh; lịch đo cần thống nhất với nhân viên y tế.",
+    "source_title": "NIDDK Managing Diabetes",
+    "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "D09",
+    "title": "Mục tiêu và thuốc",
+    "concepts": [
+      "care"
+    ],
+    "keywords": [
+      "mục tiêu",
+      "thuốc",
+      "kế hoạch chăm sóc"
+    ],
+    "content": "Mục tiêu theo dõi và kế hoạch chăm sóc cần phù hợp từng người. Trao đổi với nhóm chăm sóc về thuốc và khó khăn; ứng dụng không quyết định liều dùng.",
+    "source_title": "NIDDK Managing Diabetes",
+    "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "D10",
+    "title": "Ăn uống và khẩu phần",
+    "concepts": [
+      "nutrition"
+    ],
+    "keywords": [
+      "ăn uống",
+      "dinh dưỡng",
+      "đĩa ăn",
+      "khẩu phần"
+    ],
+    "content": "Lựa chọn thực phẩm và khẩu phần cần phù hợp mục tiêu, thói quen và thuốc đang dùng. Có thể tìm hiểu phương pháp đĩa ăn cùng chuyên viên dinh dưỡng.",
+    "source_title": "CDC Diabetes Meal Planning",
+    "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "D11",
+    "title": "Carbohydrate",
+    "concepts": [
+      "carbs"
+    ],
+    "keywords": [
+      "carbohydrate",
+      "carb",
+      "tinh bột",
+      "đếm carb"
+    ],
+    "content": "Carbohydrate ảnh hưởng đường huyết; tốc độ thay đổi còn phụ thuộc thực phẩm ăn kèm. Không dùng thông tin chung này để tự tính liều insulin.",
+    "source_title": "CDC Diabetes Meal Planning",
+    "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "D12",
+    "title": "Vận động",
+    "concepts": [
+      "activity"
+    ],
+    "keywords": [
+      "vận động",
+      "đi bộ",
+      "tập luyện",
+      "thể dục"
+    ],
+    "content": "Vận động đều đặn hỗ trợ quản lý đường huyết. Bắt đầu phù hợp khả năng và hỏi nhân viên y tế về hoạt động hoặc giới hạn cần lưu ý.",
+    "source_title": "CDC Get Active",
+    "source_url": "https://www.cdc.gov/diabetes/living-with/physical-activity.html",
+    "checked_at": "2026-11-05"
+  }
+]

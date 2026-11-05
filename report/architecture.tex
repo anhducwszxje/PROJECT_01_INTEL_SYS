@@ -1,0 +1,79 @@
+\chapter{Cơ sở tác tử và kiến trúc hệ thống}
+\section{Tác tử và hệ đa tác tử}
+Trong cách tiếp cận tác tử, một thành phần quan sát môi trường, lựa chọn hành động theo mục tiêu và cung cấp phản hồi để các thành phần khác tiếp tục xử lý. Các tính chất tự chủ, phản ứng, chủ động và tương tác thường được dùng để phân tích agent \cite{wooldridge}. Mức tự chủ của Project01 có giới hạn: tác tử có thể yêu cầu dữ liệu, từ chối khi thiếu bằng chứng hoặc trả FAILURE, nhưng không tự chọn công cụ ngoài tập được lập trình.
+
+Hệ đa tác tử phân chia bài toán theo trách nhiệm và phối hợp qua một giao thức. Trong project, việc phân chia không phụ thuộc vào việc có nhiều LLM. Risk sử dụng mô hình đã học; Knowledge sử dụng kho tri thức; Reminder sử dụng Q-table; Intake và Council áp dụng luật. Các vai trò có cách ra quyết định khác nhau và được kết nối bởi Coordinator.
+
+\begin{table}[H]\centering\small
+\caption{Liên hệ loại tác tử và hiện thực trong Project01.}
+\begin{tabularx}{\textwidth}{@{}p{3.5cm}Y@{}}\toprule
+Loại cơ chế & Hiện thực và giới hạn \\\midrule
+Phản ứng theo luật & Intake ưu tiên dấu hiệu khẩn cấp và phạm vi; chỉ bao phủ điều kiện đã mã hóa. \\
+Dựa trên mô hình học & Risk nạp MLP hoặc baseline, suy luận trên vector khảo sát hợp lệ. \\
+Dựa trên tri thức & Knowledge truy xuất ghi chú và liên kết khái niệm; không suy diễn lâm sàng mở. \\
+Học từ phần thưởng & Reminder chọn argmax Q theo trạng thái mô phỏng; không tự huấn luyện trong request. \\
+Kiểm tra và tổng hợp & Council kiểm tra hợp đồng; Advisor ghép kết quả có nguồn theo mẫu. \\\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Kiến trúc tổng thể}
+Hình \ref{fig:architecture} thể hiện ba nhánh dữ liệu cùng hội tụ ở điều phối. Dữ liệu nghiên cứu và tri thức được chuẩn bị trước, còn mỗi request chỉ thực hiện kiểm tra, suy luận, truy xuất và tổng hợp. Không có thao tác fit trong luồng request, nên việc dự đoán của demo tương ứng với artifact đã đánh giá.
+
+\begin{figure}[H]\centering
+\begin{tikzpicture}[node distance=8mm and 8mm, every node/.style={font=\small},
+ box/.style={draw,rounded corners,align=center,text width=3.6cm,minimum height=1.0cm},
+ flow/.style={-Latex,thick}]
+\node[box] (db) {CSV và SQLite\\24.000 hồ sơ CDC};
+\node[box,right=of db] (kb) {Ghi chú NIDDK và CDC\\KB và đồ thị khái niệm};
+\node[box,right=of kb] (sim) {Môi trường giả lập\\Q-learning nhắc nhật ký};
+\node[box,below=of db] (risk) {Risk\\MLP và baseline};
+\node[box,below=of kb] (know) {Knowledge\\Truy xuất có nguồn};
+\node[box,below=of sim] (rem) {Reminder\\Chính sách Q đã học};
+\node[box,below=14mm of know,text width=5cm] (coord) {Coordinator\\Tiếp nhận qua Intake trước khi giao việc};
+\node[box,below=of coord,text width=5cm] (council) {Council\\Kiểm tra hợp đồng và quyền veto};
+\node[box,below=of council,text width=5cm] (advisor) {Advisor và giao diện local\\Kết quả, nguồn và trace};
+\draw[flow] (db)--(risk); \draw[flow] (kb)--(know); \draw[flow] (sim)--(rem);
+\draw[flow] (risk)|-(coord); \draw[flow] (know)--(coord); \draw[flow] (rem)|-(coord);
+\draw[flow] (coord)--(council); \draw[flow] (council)--(advisor);
+\end{tikzpicture}
+\caption{Các nguồn thông tin và cơ chế phối hợp của Diabetes Agent.}\label{fig:architecture}
+\end{figure}
+
+\section{Vai trò và hợp đồng đầu ra}
+\begin{table}[H]\centering\small
+\caption{Bảy vai trò tính cả điều phối.}
+\begin{tabularx}{\textwidth}{@{}p{2.1cm}p{3cm}Y@{}}\toprule
+Vai trò & Đầu vào chính & Đầu ra và trách nhiệm \\\midrule
+Coordinator & Tác vụ, câu hỏi, hồ sơ & Giao việc theo tác vụ; dừng sớm nếu Intake không cho phép. \\
+Intake & Câu hỏi và context & completed, urgent, needs\_input hoặc out\_of\_scope. \\
+Risk & 21 input và model ID & Score, threshold, nhãn; liệt kê thiếu/sai mã khi chưa suy luận được. \\
+Knowledge & Câu hỏi & Tối đa ba ghi chú, ID/URL và câu trả lời; có thể thiếu bằng chứng. \\
+Reminder & Gap và fatigue & Trạng thái, ba Q-value và hành động nhắc việc. \\
+Council & Các proposal & approved/rejected cùng lý do; không sửa điểm model. \\
+Advisor & Proposal được duyệt & Ghép đoạn kết quả, nguồn và lời nhắc phạm vi. \\\bottomrule
+\end{tabularx}
+\end{table}
+
+Các tác vụ được người dùng chọn tường minh: consult, knowledge, risk hoặc reminder. Đây là chủ đích thiết kế để làm rõ hợp đồng đầu vào; project không bổ sung bộ hiểu ý định hội thoại chưa được đánh giá. consult gọi cả ba nhánh chuyên môn, trong khi các tác vụ riêng chỉ gọi thành phần cần thiết.
+
+\section{Thông điệp và điều kiện dừng}
+MessageBus nhận sender, receiver, task và payload; ghi REQUEST trước khi gọi handler, sau đó ghi INFORM hoặc FAILURE. Mỗi thông điệp phản hồi có trạng thái và thời gian xử lý. Khi handler phát sinh exception, bus chuyển lỗi thành kết quả failure để Council có thể từ chối tổng hợp. Thông tin lỗi này dùng cho demo kỹ thuật local.
+
+Một lượt consult bình thường có sáu cặp request/response, tương ứng 12 bản ghi: Intake, Risk, Knowledge, Reminder, Council và Advisor. Nếu Intake phát hiện trạng thái urgent, hệ thống kết thúc sau hai thông điệp và không gọi Risk. Nếu Council bác proposal, Advisor không được gọi. Không có vòng lặp tranh biện vô hạn hoặc tác tử tự tạo thêm tác tử.
+
+\begin{table}[H]\centering\small
+\caption{Ba performative được hiện thực thực tế.}
+\begin{tabularx}{\textwidth}{@{}p{2.5cm}Y@{}}\toprule
+Loại & Ý nghĩa \\\midrule
+REQUEST & Coordinator yêu cầu một handler thực hiện nhiệm vụ với payload cụ thể. \\
+INFORM & Handler trả trạng thái và dữ liệu. approved/rejected cũng là nội dung INFORM từ Council. \\
+FAILURE & Handler không thực hiện được do exception; chưa thể coi là kết quả thành công. \\\bottomrule
+\end{tabularx}
+\end{table}
+
+Quy ước này lấy tinh thần thông điệp tác tử nhưng không triển khai đầy đủ FIPA-ACL. Không có dịch vụ khám phá agent, transport mạng hoặc bảo đảm truyền thông phân tán. Việc gọi đồng bộ giúp kiểm tra được thứ tự và giới hạn công việc trên máy cá nhân.
+
+\section{Luật ưu tiên và quyền kiểm tra}
+Intake được thực hiện trước chuyên gia. Những cụm dấu hiệu như bất tỉnh, co giật hoặc khó thở nặng làm hệ thống chuyển nhánh cần hỗ trợ y tế. Số đo glucose bổ sung phải hữu hạn, đúng khoảng kiểm tra và được nhập theo mg/dL; dưới 70 mg/dL kích hoạt cảnh báo có nguồn CDC \cite{cdc_low}. Đây là luật cảnh báo riêng, không phải nhãn do mô hình khảo sát suy ra.
+
+Council kiểm tra ID bằng chứng, sự hiện diện của nguồn khi Knowledge trả completed, khoảng score và các lỗi failure. Proposal loại medication luôn bị bác. Tuy vậy, hợp đồng đúng dạng không bảo đảm câu trả lời đúng y khoa hoặc phản ánh đầy đủ tình trạng người dùng. Quyền veto là một lớp bảo vệ phần mềm có phạm vi xác định.

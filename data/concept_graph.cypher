@@ -1,0 +1,21 @@
+// Optional export only. The local demo does not require Neo4j.
+MERGE (:Concept {id: 'diabetes'});
+MERGE (:Concept {id: 'types'});
+MERGE (:Concept {id: 'tests'});
+MERGE (:Concept {id: 'fasting'});
+MERGE (:Concept {id: 'hypoglycemia'});
+MERGE (:Concept {id: 'a1c'});
+MERGE (:Concept {id: 'a1c_limits'});
+MERGE (:Concept {id: 'journal'});
+MERGE (:Concept {id: 'care'});
+MERGE (:Concept {id: 'nutrition'});
+MERGE (:Concept {id: 'carbs'});
+MERGE (:Concept {id: 'activity'});
+MATCH (a:Concept {id:'diabetes'}), (b:Concept {id:'tests'}) MERGE (a)-[:ASSESSED_BY]->(b);
+MATCH (a:Concept {id:'tests'}), (b:Concept {id:'fasting'}) MERGE (a)-[:INCLUDES]->(b);
+MATCH (a:Concept {id:'tests'}), (b:Concept {id:'a1c'}) MERGE (a)-[:INCLUDES]->(b);
+MATCH (a:Concept {id:'a1c'}), (b:Concept {id:'a1c_limits'}) MERGE (a)-[:HAS_LIMITATION]->(b);
+MATCH (a:Concept {id:'diabetes'}), (b:Concept {id:'care'}) MERGE (a)-[:MANAGED_WITH]->(b);
+MATCH (a:Concept {id:'care'}), (b:Concept {id:'journal'}) MERGE (a)-[:USES]->(b);
+MATCH (a:Concept {id:'nutrition'}), (b:Concept {id:'carbs'}) MERGE (a)-[:INCLUDES]->(b);
+MATCH (a:Concept {id:'care'}), (b:Concept {id:'activity'}) MERGE (a)-[:INCLUDES]->(b);

@@ -1,0 +1,75 @@
+\chapter{Dữ liệu và mô hình học sâu}
+\section{Nguồn dữ liệu và ý nghĩa nhãn}
+Nguồn công khai là CDC Diabetes Health Indicators trên UCI \cite{uci}. CSV nguồn có 253.680 dòng với 21 đặc trưng và cột nhãn nhị phân. Project sử dụng mẫu nghiên cứu 24.000 dòng đã được đóng băng trong workspace trước đó. Metadata lưu cả SHA256 nguồn và SHA256 mẫu, URL và quy trình chia tập; hàm đọc dừng nếu checksum mẫu không còn khớp.
+
+Nhãn được đổi tên từ \texttt{Diabetes\_binary} thành \texttt{target}. Trong diễn giải của project, lớp 1 là nhãn gộp tiền tiểu đường/tiểu đường theo mã UCI, còn lớp 0 là không có nhãn đó trong dữ liệu. Không có căn cứ từ cột này để kết luận riêng type 2 hoặc nguy cơ mắc bệnh sau một khoảng thời gian. Trang UCI có phần giới thiệu chưa thống nhất với bảng số đặc trưng; project bám schema của CSV thực tế và ghi nhận khác biệt trong provenance.
+
+\section{Đặc trưng và mã hóa}
+Các biến bao gồm huyết áp/cholesterol cao, BMI, hút thuốc, tiền sử đột quỵ hoặc bệnh tim, vận động, rau/trái cây, bảo hiểm và rào cản chi phí, tự đánh giá sức khỏe, số ngày sức khỏe kém, khó đi lại, giới tính và các nhóm tuổi/học vấn/thu nhập.
+
+\begin{table}[H]\centering\small
+\caption{Nhóm đặc trưng và những điểm dễ nhập sai.}
+\begin{tabularx}{\textwidth}{@{}p{4cm}Y@{}}\toprule
+Nhóm & Mã và ý nghĩa trong project \\\midrule
+Biến nhị phân & 0/1; không tự biến câu trả lời mơ hồ thành một giá trị mặc định. \\
+BMI & Số liên tục trong khoảng 12--98, đơn vị kg/m$^2$. \\
+Age & Mã 1--13, không phải tuổi theo năm; 1 ứng với 18--24, 13 từ 80 tuổi. \\
+GenHlth & Mã 1--5, từ sức khỏe tự đánh giá tốt tới kém. \\
+MentHlth và PhysHlth & Số ngày 0--30 trong giai đoạn khảo sát. \\
+Education và Income & Các nhóm 1--6 và 1--8 theo schema Hoa Kỳ; không tự quy đổi thành thước đo Việt Nam. \\
+Cột quản trị & target, row\_id, group và split không được đưa vào input. \\\bottomrule
+\end{tabularx}
+\end{table}
+
+Các mã có thứ tự được đưa vào dưới dạng số như một lựa chọn đơn giản. Điều đó áp đặt quan hệ khoảng cách cho Logistic/MLP và là một giới hạn; project chưa so sánh one-hot encoding hoặc mô hình chuyên biệt cho biến phân loại. Tất cả model dùng cùng tập đặc trưng để giữ điều kiện đối chiếu.
+
+\section{Chia tập và chống rò rỉ}
+\input{tables/splits.tex}
+Split được kế thừa nguyên từ tập nghiên cứu, với seed 42/43 ở bước chia theo nhóm. Mỗi nhóm được định nghĩa bởi fingerprint của cùng vector 21 đặc trưng. Các fingerprint giống nhau không xuất hiện ở hai tập khác nhau. Hàm \texttt{load\_data} còn tính lại fingerprint để không chỉ tin cột group được lưu sẵn.
+
+Không có định danh bệnh nhân để chứng minh mọi bản ghi của một người đều được gom cùng split. Vì vậy, phát biểu chính xác là tách nhóm vector trùng nhau, không phải đã bảo đảm tách theo người bệnh. Phân bố nhãn giữa các split có chênh lệch nhỏ do chia theo nhóm, không ép cân bằng thành 50/50.
+
+Scaler chỉ fit trên train. Validation được dùng để chọn epoch, model mặc định và ngưỡng. Test không được dùng để chọn lại các quyết định đó. Việc chạy lại notebook sử dụng cùng source, seed và split; các lượt lặp để xác nhận tái lập không được coi là các lần thử độc lập.
+
+\section{MLP PyTorch và hàm mất mát}
+Mạng sử dụng hai lớp ẩn kích thước 64 và 32, ReLU, dropout 0,15 sau lớp đầu và một logit đầu ra. Với vector đầu vào đã chuẩn hóa $x$, mô hình tính:
+\begin{align}
+h_1 &= \operatorname{ReLU}(W_1x+b_1),\\
+h_2 &= \operatorname{ReLU}(W_2\operatorname{Dropout}(h_1)+b_2),\\
+z &= W_3h_2+b_3, \qquad p=\sigma(z).
+\end{align}
+Số tham số học là $21\cdot64+64+64\cdot32+32+32+1=3.521$. Đầu ra logit được đưa trực tiếp vào \texttt{BCEWithLogitsLoss}; sigmoid chỉ áp dụng khi suy luận. Việc kết hợp logit và BCE trong cùng toán tử giúp ổn định tính toán theo tài liệu PyTorch \cite{pytorch_bce}.
+
+\begin{equation}
+\mathcal{L}=-\frac{1}{N}\sum_{i=1}^{N}\left[y_i\log\sigma(z_i)+(1-y_i)\log(1-\sigma(z_i))\right].
+\end{equation}
+Không dùng trọng số lớp hoặc tái lấy mẫu để đổi tiên nghiệm. Dù vậy, sigmoid không được coi là xác suất lâm sàng đã hiệu chỉnh. Project chỉ báo Brier score mô tả sai số xác suất trên tập test nội bộ; chưa có calibration/external validation cho quần thể mục tiêu.
+
+\begin{table}[H]\centering\small
+\caption{Cấu hình huấn luyện MLP được khóa trong source.}
+\begin{tabular}{@{}ll@{}}\toprule
+Thông số & Giá trị \\\midrule
+Kiến trúc & 21--64--32--1 \\
+Optimizer & Adam; learning rate 0,001; weight decay $10^{-4}$ \\
+Batch và epoch tối đa & 256; 80 \\
+Early stopping & BCE validation; patience 10; mức cải thiện $10^{-5}$ \\
+Khởi tạo & Seed 42; CPU; 2 thread PyTorch \\
+Checkpoint & Weight có BCE validation thấp nhất, không phải epoch cuối \\\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Các mô hình đối chứng}
+Logistic Regression là pipeline StandardScaler và bộ phân loại tuyến tính với tối đa 1.000 vòng lặp. Random Forest dùng 160 cây, ít nhất 8 mẫu ở lá, max\_features bằng căn bậc hai và seed 42. DummyClassifier với strategy prior luôn trả phân bố nhãn train. Đây là các cấu hình cố định của project, chưa thực hiện tìm kiếm siêu tham số toàn diện.
+
+Đối chứng giúp kiểm tra xem mạng nhiều lớp có tạo khác biệt so với cách tiếp cận đơn giản hơn trên dữ liệu bảng. Không giả định học sâu luôn có ưu thế. Model mặc định được chọn bằng Average Precision validation, và có thể là Random Forest dù MLP là thành phần học sâu cần trình bày.
+
+\section{Ngưỡng và chỉ số đánh giá}
+Mỗi model chọn ngưỡng từ 151 ứng viên đều nhau trong khoảng 0,05--0,80, tối đa hóa F1 validation; nếu bằng điểm, chọn ứng viên xuất hiện đầu tiên. Sau đó ngưỡng được giữ nguyên khi đánh giá test. Cách này phục vụ benchmark kỹ thuật; không tối ưu chi phí lâm sàng của âm tính giả/dương tính giả.
+
+ROC AUC mô tả khả năng xếp hạng giữa hai lớp. Average Precision tổng hợp precision theo các mức recall và phù hợp để quan sát bài toán lớp dương ít \cite{sklearn_ap}. Precision, recall, specificity, F1 và ma trận nhầm lẫn được báo tại ngưỡng đã chọn. Brier là trung bình $(p_i-y_i)^2$, thấp hơn là tốt hơn trong cùng điều kiện dữ liệu.
+
+\begin{align}
+\operatorname{Precision}&=\frac{TP}{TP+FP}, &\operatorname{Recall}&=\frac{TP}{TP+FN},\\
+\operatorname{F1}&=\frac{2PR}{P+R}, &\operatorname{Specificity}&=\frac{TN}{TN+FP}.
+\end{align}
+Accuracy không được dùng làm kết luận chính vì phần lớn mẫu thuộc lớp 0. Đường chuẩn Average Precision của bộ dự đoán không có khả năng phân biệt bằng tỷ lệ lớp 1 trong tập đánh giá.

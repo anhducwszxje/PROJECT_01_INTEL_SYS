@@ -1,0 +1,76 @@
+{
+  "states": 8,
+  "actions": [
+    "Không nhắc",
+    "Nhắc ghi nhật ký",
+    "Gửi gợi ý ghi chép ngắn"
+  ],
+  "episodes": 1800,
+  "days": 28,
+  "gamma": 0.92,
+  "alpha": 0.08,
+  "train_seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "evaluation_seeds": [
+    10000,
+    10199
+  ],
+  "policies": [
+    [
+      1,
+      0,
+      2,
+      2,
+      2,
+      0,
+      1,
+      2
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      2,
+      2,
+      2,
+      0,
+      2,
+      1
+    ],
+    [
+      2,
+      2,
+      1,
+      2,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      2,
+      1,
+      0,
+      2,
+      1,
+      1,
+      2
+    ]
+  ],
+  "limitation": "Synthetic reminder response and utility; not treatment efficacy."
+}

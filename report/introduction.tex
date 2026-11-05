@@ -1,0 +1,37 @@
+\chapter{Giới thiệu và phạm vi đề tài}
+\section{Bài toán đặt ra}
+Project01 xây dựng một hệ đa tác tử mang tên Diabetes Agent để minh họa cách kết hợp dữ liệu có cấu trúc, mô hình học sâu, tri thức có nguồn và một chính sách học tăng cường trong cùng ứng dụng local. Người sử dụng có thể chạy phân loại trên hồ sơ khảo sát, hỏi kiến thức về tiểu đường, xem hành động nhắc ghi nhật ký và theo dõi các bước điều phối. Kết quả quan trọng của project là một hệ thống chạy được, có mã nguồn và notebook tái lập; chất lượng được đánh giá riêng cho mô hình, truy xuất và hợp đồng phần mềm.
+
+Một câu trả lời về sức khỏe có thể chứa nhiều loại thông tin với yêu cầu kiểm tra khác nhau. Điểm phân loại phải đến từ model đã huấn luyện; thông tin giáo dục cần liên kết tới nguồn; hành động nhắc việc phải nằm trong phạm vi cho phép. Nếu gộp tất cả vào một chuỗi xử lý không quan sát được, người đọc khó biết kết luận đến từ dữ liệu, từ luật hay từ nội dung biên soạn. Việc chia thành các tác tử giúp xác định trách nhiệm và kiểm tra đầu ra của từng bước.
+
+Project sử dụng các nguồn giáo dục sức khỏe chính thức NIDDK và CDC \cite{niddk_tests,cdc_low}. Các nguồn này được dùng để biên soạn ghi chú ngắn và đặt giới hạn sử dụng, không để tuyên bố hệ thống đã được thẩm định lâm sàng. Công cụ không chẩn đoán, kê đơn, điều chỉnh thuốc hoặc thay thế tư vấn của nhân viên y tế.
+
+\section{Mục tiêu và sản phẩm bàn giao}
+Sản phẩm cần giải quyết bốn nhóm yêu cầu. Thứ nhất, từ CSDL nghiên cứu có sẵn, huấn luyện MLP để phân loại nhãn nhị phân và đối chiếu với mô hình đơn giản hơn. Thứ hai, lưu trữ tri thức có ID và URL, truy xuất theo câu hỏi rồi kết xuất câu trả lời có bằng chứng. Thứ ba, hiện thực Q-learning cùng luật ràng buộc để minh họa một tác tử học chính sách. Thứ tư, phối hợp các kết quả qua điều phối, kiểm tra và tư vấn, đồng thời lưu được vết trao đổi khi cần.
+
+Các sản phẩm cụ thể gồm mã Python chia theo chức năng, bốn notebook có output thực, dữ liệu và model đã huấn luyện, demo Streamlit chạy tại localhost, bộ kiểm thử và báo cáo này cùng source LaTeX. Người nhận có thể mở demo ngay sau khi cài thư viện; không cần API key và không cần huấn luyện lại trước buổi trình diễn.
+
+\begin{table}[H]\centering\small
+\caption{Tiêu chí hoàn thành và cách kiểm tra.}
+\begin{tabularx}{\textwidth}{@{}p{3.7cm}Y@{}}\toprule
+Yêu cầu & Bằng chứng kiểm tra \\\midrule
+Source code rõ ràng & Các module trong \texttt{diabetes\_agent/}; notebook và app gọi cùng mã. \\
+Notebook thực thi được & Bốn file \texttt{ipynb}, execution count và output; log tại \texttt{notebook\_execution.json}. \\
+Mô hình học thật & Weight PyTorch, scaler, baseline, history và prediction test từng dòng. \\
+Demo local & Bốn tab giao diện, chạy hội chẩn, tải trace JSON; kiểm tra bằng trình duyệt và AppTest. \\
+Báo cáo phù hợp & Bìa PTIT và hệ thống định dạng theo Agent02; bảng/hình lấy từ artifact Project01. \\\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Cách kế thừa tài liệu và workspace}
+Báo cáo \textit{project01\_CT\_03\_khanhtv.pdf} do người dùng cung cấp được tham khảo về cấu trúc bài toán: nhánh dữ liệu và học sâu, nhánh KB và truy xuất, nhánh RL kết hợp luật, sau đó hội tụ ở hệ đa tác tử. Project này không sử dụng các số liệu thực nghiệm của tài liệu đó làm kết quả của mình. Không triển khai giả định hiệu quả thuốc hoặc hiệu chỉnh dân số chỉ để giống báo cáo mẫu.
+
+Tập nghiên cứu 24.000 dòng CDC được kế thừa nguyên dữ liệu và split từ dự án \texttt{Diabetes\_MultiAgent} có sẵn trong workspace. Các model của Project01 được huấn luyện mới và đóng gói riêng. CSV, source, model và hướng dẫn đều nằm trong thư mục bàn giao, nên khi di chuyển thư mục không cần tiếp tục truy cập project cũ.
+
+Hình thức báo cáo bám theo Agent01/Agent02: khung bìa và logo PTIT, Times New Roman cỡ 12, lề trái 3 cm, phải 2 cm, trên dưới 2,5 cm, header khoa và nhóm, số trang giữa footer, tiêu đề chia theo Phần, bảng và hình có chú thích. Thông tin sinh viên được giữ theo báo cáo hiện có: Bùi Anh Đức, B23DCCN165, D23CTPM01.
+
+\section{Phạm vi được hiện thực}
+Nhánh dự đoán sử dụng 21 chỉ báo khảo sát và nhãn gộp tiền tiểu đường/tiểu đường theo CSV UCI. Điểm đầu ra không được diễn giải thành xác suất mắc bệnh trong tương lai. Nhánh tri thức dùng TF-IDF kết hợp đồ thị khái niệm local, rồi ghép trích xuất theo mẫu; không có LLM sinh tự do hoặc Neo4j server đang vận hành. Nhánh RL chỉ học nhắc ghi nhật ký trong môi trường do tác giả định nghĩa.
+
+Council kiểm tra hợp đồng và có quyền bác kết quả sai dạng, thiếu bằng chứng hoặc đề xuất thuốc. Đây là cơ chế kiểm tra tất định, không phải hội đồng bác sĩ hay mô hình tranh biện nhiều vòng. Các tác tử chạy trong một tiến trình Python, trao đổi đồng bộ qua MessageBus. Những lựa chọn này giữ được luồng đầu-cuối có thể quan sát và kiểm thử trong phạm vi project sinh viên.
+

@@ -1,0 +1,39 @@
+{
+  "seed": 42,
+  "default_model": "random_forest",
+  "best_epoch": 21,
+  "features": [
+    "HighBP",
+    "HighChol",
+    "CholCheck",
+    "BMI",
+    "Smoker",
+    "Stroke",
+    "HeartDiseaseorAttack",
+    "PhysActivity",
+    "Fruits",
+    "Veggies",
+    "HvyAlcoholConsump",
+    "AnyHealthcare",
+    "NoDocbcCost",
+    "GenHlth",
+    "MentHlth",
+    "PhysHlth",
+    "DiffWalk",
+    "Sex",
+    "Age",
+    "Education",
+    "Income"
+  ],
+  "selection": "validation average precision; validation F1 threshold",
+  "thresholds": {
+    "dummy": 0.05,
+    "logistic": 0.21500000000000002,
+    "random_forest": 0.22999999999999998,
+    "mlp": 0.20500000000000002
+  },
+  "python": "3.11.9",
+  "torch": "2.15.0+cpu",
+  "sklearn": "1.9.1",
+  "architecture": "21 -> 64 ReLU -> 32 ReLU -> 1 logit"
+}
