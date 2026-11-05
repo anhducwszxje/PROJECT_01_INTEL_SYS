@@ -11,7 +11,7 @@
     "code_cells": 6,
     "executed_cells": 6,
     "errors": 0,
-    "seconds": 4.59
+    "seconds": 5.79
   },
   {
     "notebook": "03_Q_learning_nhac_nhat_ky.ipynb",
@@ -25,6 +25,6 @@
     "code_cells": 8,
     "executed_cells": 8,
     "errors": 0,
-    "seconds": 13.44
+    "seconds": 7.95
   }
 ]

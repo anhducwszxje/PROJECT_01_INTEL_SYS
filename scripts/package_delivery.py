@@ -7,7 +7,7 @@ from pathlib import Path
 import nbformat
 
 ROOT = Path(__file__).resolve().parents[1]
-excluded = {".venv", "__pycache__", ".pytest_cache", ".ipynb_checkpoints", "build"}
+excluded = {".git", ".venv", "__pycache__", ".pytest_cache", ".ipynb_checkpoints", "build"}
 output = ROOT.parent / "PROJECT_01_Ban_Giao.zip"
 books = sorted((ROOT / "notebooks").glob("*.ipynb"))
 assert len(books) == 4

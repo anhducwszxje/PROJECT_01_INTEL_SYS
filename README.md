@@ -2,7 +2,11 @@
 
 Hệ đa tác tử hỗ trợ phân loại **hồ sơ khảo sát**, truy xuất tri thức có nguồn và nhắc ghi nhật ký trong mô phỏng. Bản Project01 độc lập, kế thừa tập dữ liệu nghiên cứu đã có trong workspace và huấn luyện model mới. Không cần chạy project cũ.
 
-**Không chẩn đoán, kê đơn hoặc thay đổi điều trị.** Nhãn CDC/UCI gộp tiền tiểu đường/tiểu đường; model không dự báo xác suất mắc bệnh tương lai. Q-learning chỉ tối ưu reward giả định của nhắc việc.
+Giao diện dashboard có ba kịch bản chạy nhanh, bảy thẻ trạng thái tác tử, vòng điểm phân loại, các thẻ tri thức và biểu đồ tương tác. Nhấn **Phân tích hồ sơ**, **Tìm hiểu HbA1c** hoặc **Nhắc ghi nhật ký** để chạy ngay; dùng **Bắt đầu phân tích** khi tự nhập câu hỏi và hồ sơ.
+
+![Dashboard Diabetes Agent](assets/demo_overview.jpg)
+
+![Kết quả phân tích và trạng thái tác tử](assets/demo_result.jpg)
 
 ## Chạy nhanh trên Windows
 

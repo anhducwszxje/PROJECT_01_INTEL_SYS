@@ -1,7 +1,7 @@
 {
   "system_cases": 20,
   "system_passed": 20,
-  "latency_median_ms": 0.06780005060136318,
+  "latency_median_ms": 0.058999983593821526,
   "retrieval": {
     "false": {
       "hit_at_1": 1.0,

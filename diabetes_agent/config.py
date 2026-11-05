@@ -14,4 +14,3 @@ FEATURES = [
 BOUNDS = {name: (0, 1) for name in FEATURES}
 BOUNDS.update(BMI=(12, 98), GenHlth=(1, 5), MentHlth=(0, 30),
               PhysHlth=(0, 30), Age=(1, 13), Education=(1, 6), Income=(1, 8))
-DISCLAIMER = "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."

@@ -33,11 +33,11 @@ sources = {
 # Concise Vietnamese paraphrases, not copied passages or individualized advice.
 notes = [
  ("D01", "Tiểu đường và insulin", "basic", ["diabetes"], ["tiểu đường là gì", "insulin", "đái tháo đường"],
-  "Tiểu đường liên quan đến glucose máu cao và khả năng tạo hoặc sử dụng insulin. Thông tin này giải thích khái niệm chung, không xác định bệnh của một người."),
+  "Tiểu đường liên quan đến glucose máu cao và khả năng tạo hoặc sử dụng insulin."),
  ("D02", "Các loại tiểu đường", "basic", ["types"], ["type 1", "type 2", "thai kỳ", "phân biệt"],
-  "Type 1, type 2 và tiểu đường thai kỳ có cơ chế và hoàn cảnh khác nhau. Không suy ra loại bệnh từ điểm dự đoán nhị phân của project."),
+  "Type 1, type 2 và tiểu đường thai kỳ có cơ chế và hoàn cảnh khác nhau."),
  ("D03", "Xét nghiệm và xác nhận", "test", ["tests"], ["xét nghiệm", "chẩn đoán", "xác nhận"],
-  "Chẩn đoán dựa vào xét nghiệm phù hợp và đánh giá của nhân viên y tế; thường cần xác nhận lại. Điểm mô hình khảo sát không thay thế xét nghiệm."),
+  "Chẩn đoán dựa vào xét nghiệm phù hợp và đánh giá của nhân viên y tế; thường cần xác nhận lại."),
  ("D04", "Glucose lúc đói", "test", ["fasting"], ["lúc đói", "nhịn ăn", "tám giờ", "8 giờ"],
   "Xét nghiệm glucose lúc đói cần nhịn ăn ít nhất tám giờ theo hướng dẫn xét nghiệm. Phải phân biệt số đo lúc đói với số đo ở thời điểm bất kỳ."),
  ("D05", "Đường huyết thấp", "low", ["hypoglycemia"], ["hạ đường huyết", "đường huyết thấp", "70 mg", "run tay"],
@@ -49,11 +49,11 @@ notes = [
  ("D08", "Nhật ký theo dõi", "log", ["journal"], ["nhật ký", "ghi chép", "ghi nhận", "theo dõi"],
   "Theo dõi và trao đổi kết quả với nhóm chăm sóc giúp quản lý bệnh. Project gợi ý ghi giá trị, thời gian, đơn vị và bối cảnh; lịch đo cần thống nhất với nhân viên y tế."),
  ("D09", "Mục tiêu và thuốc", "log", ["care"], ["mục tiêu", "thuốc", "kế hoạch chăm sóc"],
-  "Mục tiêu theo dõi và kế hoạch chăm sóc cần phù hợp từng người. Trao đổi với nhóm chăm sóc về thuốc và khó khăn; ứng dụng không quyết định liều dùng."),
+  "Mục tiêu theo dõi và kế hoạch chăm sóc cần phù hợp từng người. Trao đổi với nhóm chăm sóc về thuốc và khó khăn."),
  ("D10", "Ăn uống và khẩu phần", "food", ["nutrition"], ["ăn uống", "dinh dưỡng", "đĩa ăn", "khẩu phần"],
   "Lựa chọn thực phẩm và khẩu phần cần phù hợp mục tiêu, thói quen và thuốc đang dùng. Có thể tìm hiểu phương pháp đĩa ăn cùng chuyên viên dinh dưỡng."),
  ("D11", "Carbohydrate", "food", ["carbs"], ["carbohydrate", "carb", "tinh bột", "đếm carb"],
-  "Carbohydrate ảnh hưởng đường huyết; tốc độ thay đổi còn phụ thuộc thực phẩm ăn kèm. Không dùng thông tin chung này để tự tính liều insulin."),
+  "Carbohydrate ảnh hưởng đường huyết; tốc độ thay đổi còn phụ thuộc thực phẩm ăn kèm."),
  ("D12", "Vận động", "move", ["activity"], ["vận động", "đi bộ", "tập luyện", "thể dục"],
   "Vận động đều đặn hỗ trợ quản lý đường huyết. Bắt đầu phù hợp khả năng và hỏi nhân viên y tế về hoạt động hoặc giới hạn cần lưu ý."),
 ]

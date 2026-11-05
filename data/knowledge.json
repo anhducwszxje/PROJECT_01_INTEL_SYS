@@ -10,7 +10,7 @@
       "insulin",
       "đái tháo đường"
     ],
-    "content": "Tiểu đường liên quan đến glucose máu cao và khả năng tạo hoặc sử dụng insulin. Thông tin này giải thích khái niệm chung, không xác định bệnh của một người.",
+    "content": "Tiểu đường liên quan đến glucose máu cao và khả năng tạo hoặc sử dụng insulin.",
     "source_title": "NIDDK What Is Diabetes",
     "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes",
     "checked_at": "2026-11-05"
@@ -27,7 +27,7 @@
       "thai kỳ",
       "phân biệt"
     ],
-    "content": "Type 1, type 2 và tiểu đường thai kỳ có cơ chế và hoàn cảnh khác nhau. Không suy ra loại bệnh từ điểm dự đoán nhị phân của project.",
+    "content": "Type 1, type 2 và tiểu đường thai kỳ có cơ chế và hoàn cảnh khác nhau.",
     "source_title": "NIDDK What Is Diabetes",
     "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes",
     "checked_at": "2026-11-05"
@@ -43,7 +43,7 @@
       "chẩn đoán",
       "xác nhận"
     ],
-    "content": "Chẩn đoán dựa vào xét nghiệm phù hợp và đánh giá của nhân viên y tế; thường cần xác nhận lại. Điểm mô hình khảo sát không thay thế xét nghiệm.",
+    "content": "Chẩn đoán dựa vào xét nghiệm phù hợp và đánh giá của nhân viên y tế; thường cần xác nhận lại.",
     "source_title": "NIDDK Diabetes Tests and Diagnosis",
     "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis",
     "checked_at": "2026-11-05"
@@ -143,7 +143,7 @@
       "thuốc",
       "kế hoạch chăm sóc"
     ],
-    "content": "Mục tiêu theo dõi và kế hoạch chăm sóc cần phù hợp từng người. Trao đổi với nhóm chăm sóc về thuốc và khó khăn; ứng dụng không quyết định liều dùng.",
+    "content": "Mục tiêu theo dõi và kế hoạch chăm sóc cần phù hợp từng người. Trao đổi với nhóm chăm sóc về thuốc và khó khăn.",
     "source_title": "NIDDK Managing Diabetes",
     "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
     "checked_at": "2026-11-05"
@@ -177,7 +177,7 @@
       "tinh bột",
       "đếm carb"
     ],
-    "content": "Carbohydrate ảnh hưởng đường huyết; tốc độ thay đổi còn phụ thuộc thực phẩm ăn kèm. Không dùng thông tin chung này để tự tính liều insulin.",
+    "content": "Carbohydrate ảnh hưởng đường huyết; tốc độ thay đổi còn phụ thuộc thực phẩm ăn kèm.",
     "source_title": "CDC Diabetes Meal Planning",
     "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
     "checked_at": "2026-11-05"

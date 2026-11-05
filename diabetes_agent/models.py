@@ -190,4 +190,4 @@ class RiskModel:
         threshold = self.manifest["thresholds"][model]
         return {"model": model, "score": score, "threshold": threshold,
                 "positive": score >= threshold,
-                "meaning": "Điểm mô hình cho nhãn gộp tiền tiểu đường/tiểu đường trong khảo sát UCI; không phải xác suất mắc bệnh trong tương lai."}
+                "meaning": "Điểm phân loại nhãn tiền tiểu đường/tiểu đường trên dữ liệu khảo sát UCI."}

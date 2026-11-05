@@ -63,7 +63,7 @@ Toàn bộ 20 kịch bản đạt trạng thái mong đợi ở phiên bản bà
 Sáu proposal lỗi được inject riêng gồm thuốc, tri thức không nguồn, ID giả, score vượt khoảng, score NaN và lỗi handler. Council bác cả sáu. Ở cấu hình bỏ Council, các proposal được đánh dấu unreviewed; không gọi đó là đã qua kiểm tra hoặc đã gây hại. Phép ablation xác nhận chức năng veto đối với lỗi được dựng sẵn, chưa chứng minh MAS tốt hơn một pipeline đơn tác tử dùng cùng luật và công cụ.
 
 \section{Kiểm thử tự động và notebook}
-Bộ pytest có 28 trường hợp và đều đạt. Các nhóm kiểm tra gồm checksum/fingerprint, mã khảo sát không hợp lệ, score nạp lại khớp prediction, ưu tiên urgent trước Risk, nguồn cảnh báo glucose, truy xuất không dấu và từ chối ngoài chủ đề, Council veto, cô lập exception trong bus, tính tái lập Q, miền trạng thái, ghi/đọc audit và thao tác UI bằng Streamlit AppTest.
+Bộ pytest có 32 trường hợp và đều đạt, bao gồm tính toàn vẹn dữ liệu, mã khảo sát, nạp model, truy xuất, ưu tiên urgent, Council veto, cô lập lỗi, Q-learning và lưu audit. Kiểm thử giao diện bằng Streamlit AppTest chạy hội chẩn, ba kịch bản nhanh, nhập JSON thiếu trường và xử lý glucose thấp.
 
 Bốn notebook có lần lượt 7, 6, 5 và 8 code cell, tổng cộng 26 cell. Tất cả có execution count và không có error output. Log lưu tên file, số cell và thời gian thực thi. Việc kiểm tra trực tiếp bằng trình duyệt còn được dùng để quan sát màu chữ, bố cục và ảnh minh chứng, bổ sung cho kiểm thử cấu trúc bằng AppTest.
 

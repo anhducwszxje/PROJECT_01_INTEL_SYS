@@ -3,7 +3,7 @@
 Ngày hoàn thiện: 06/11/2026 (Asia/Saigon). Kiểm tra bằng Python 3.11.9 CPU trên Windows; các nguồn tri thức được kiểm tra ngày 05/11/2026.
 
 - Bốn notebook đã thực thi, 26/26 code cell có execution count, không có error output. Xem `notebook_execution.json` và output ngay trong ipynb.
-- 28 kiểm thử pytest, gồm Streamlit AppTest mở giao diện và bấm chạy hội chẩn. Chi tiết trong `test-results.xml`.
+- 32 kiểm thử pytest, gồm Streamlit AppTest chạy hội chẩn, ba kịch bản nhanh, nhập JSON thiếu trường và nhánh glucose thấp. Chi tiết trong `test-results.xml`.
 - 20/20 kịch bản hệ thống đạt trạng thái mong đợi. Xem `system_evaluation.csv` và `system_traces.json`.
 - Council bác 6/6 proposal lỗi do tác giả inject. Đây là kiểm tra chức năng veto, không phải tỷ lệ an toàn lâm sàng.
 - 24/24 câu truy xuất tìm đúng ID đầu tiên trong bộ tự xây ở cả hai cấu hình. Chưa có bằng chứng graph cải thiện điểm trên bộ này.

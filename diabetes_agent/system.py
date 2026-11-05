@@ -8,7 +8,7 @@ from time import perf_counter
 
 import numpy as np
 
-from diabetes_agent.config import ARTIFACTS, BOUNDS, DISCLAIMER, FEATURES
+from diabetes_agent.config import ARTIFACTS, BOUNDS, FEATURES
 from diabetes_agent.knowledge import KnowledgeBase, normalize
 from diabetes_agent.models import RiskModel
 from diabetes_agent.rl import ACTIONS
@@ -95,7 +95,7 @@ class DiabetesSystem:
         action = int(self.q[state].argmax())
         return {"status": "completed", "kind": "reminder", "state": state,
                 "action": action, "text": ACTIONS[action], "q_values": self.q[state].tolist(),
-                "meaning": "Chính sách nhắc nhật ký trong mô phỏng, không phải can thiệp điều trị."}
+                "meaning": "Hành động được chọn từ Q-table theo trạng thái nhắc nhật ký."}
 
     def risk_task(self, payload):
         check = validate_profile(payload["profile"])
@@ -141,7 +141,7 @@ class DiabetesSystem:
                           "proposals": proposals, "review": council}
                 if advice["status"] == "failure":
                     result["status"] = "failure"
-        result.update(run_id=str(uuid.uuid4()), question=question, trace=bus.trace, disclaimer=DISCLAIMER)
+        result.update(run_id=str(uuid.uuid4()), question=question, trace=bus.trace)
         if self.audit_path:
             self.save_audit(result)
         return result
@@ -155,12 +155,11 @@ class DiabetesSystem:
                     paragraphs.append("Chưa chạy dự đoán: " + p.get("error", "thiếu " + ", ".join(p.get("missing", []))))
                 elif p["status"] == "completed":
                     label = "nhãn 1" if p["positive"] else "nhãn 0"
-                    paragraphs.append(f"Mô hình {p['model']}: điểm {p['score']:.3f}, ngưỡng {p['threshold']:.3f}, dự đoán {label}. " + p["meaning"])
+                    paragraphs.append(f"Mô hình {p['model']}: điểm {p['score']:.3f}, ngưỡng {p['threshold']:.3f}, dự đoán {label}.")
             elif p["kind"] == "knowledge":
                 paragraphs.append(p["text"])
             elif p["kind"] == "reminder":
-                paragraphs.append("Nhắc việc mô phỏng: " + p.get("text", p.get("error", "Thiếu thông tin")))
-        paragraphs.append("Bạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. " + DISCLAIMER)
+                paragraphs.append("Nhắc nhật ký: " + p.get("text", p.get("error", "Thiếu thông tin")))
         return "\n\n".join(paragraphs)
 
     def save_audit(self, result, path=None):

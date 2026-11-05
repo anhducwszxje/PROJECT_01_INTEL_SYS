@@ -126,12 +126,44 @@ def test_complete_consultation_has_review_and_trace(system):
     assert result["status"] == "completed"
     assert result["review"]["status"] == "approved"
     assert len(result["trace"]) == 12
+    assert "Sản phẩm học tập" not in result["text"]
+    assert "disclaimer" not in result
 
 
 def test_streamlit_demo_runs_and_submits():
     from streamlit.testing.v1 import AppTest
     app = AppTest.from_file(ROOT / "app.py", default_timeout=120).run()
     assert not app.exception
-    app.button[0].click().run()
+    app.button(key="run_agent").click().run()
     assert not app.exception
     assert app.session_state["result"]["status"] == "completed"
+
+
+@pytest.mark.parametrize("task,kind", [("consult", "risk"), ("knowledge", "knowledge"), ("reminder", "reminder")])
+def test_dashboard_presets_execute_the_selected_workflow(task, kind):
+    from streamlit.testing.v1 import AppTest
+    app = AppTest.from_file(ROOT / "app.py", default_timeout=120).run()
+    app.button(key="scenario_" + task).click().run()
+    assert not app.exception
+    result = app.session_state["result"]
+    assert result["status"] == "completed"
+    assert any(p["kind"] == kind for p in result["proposals"])
+    if task == "knowledge":
+        assert {p["kind"] for p in result["proposals"]} == {"knowledge"}
+
+
+def test_dashboard_custom_profile_and_urgent_workflows():
+    from streamlit.testing.v1 import AppTest
+    app = AppTest.from_file(ROOT / "app.py", default_timeout=120).run()
+    app.session_state["profile_mode"] = "Nhập JSON"
+    app.session_state["profile_json"] = '{"BMI": 26}'
+    app.run().button(key="run_agent").click().run()
+    assert not app.exception
+    assert app.session_state["result"]["status"] == "needs_input"
+    app.session_state["use_glucose"] = True
+    app.session_state["glucose"] = 62.0
+    app.run().button(key="run_agent").click().run()
+    result = app.session_state["result"]
+    assert not app.exception
+    assert result["status"] == "urgent"
+    assert len(result["trace"]) == 2

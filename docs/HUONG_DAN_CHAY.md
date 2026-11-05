@@ -25,9 +25,9 @@ Lần kiểm tra tác giả dùng Python 3.11.9 CPU và phiên bản trực ti�
 
 ## 3 Mở giao diện
 
-Truy cập http://127.0.0.1:8521. Mặc định chỉ bind localhost. Tab Hội chẩn demo có bốn tác vụ; tab Tri thức cho xem nguồn/cạnh; tab Thực nghiệm chứa metrics/ROC/RL; tab Hướng dẫn nhắc lại lệnh.
+Truy cập http://127.0.0.1:8521. Tab Hội chẩn demo có ba nút chạy nhanh: Phân tích hồ sơ, Tìm hiểu HbA1c và Nhắc ghi nhật ký. Bảy thẻ tác tử chuyển trạng thái theo thông điệp của phiên vừa chạy. Phần kết quả tách riêng điểm phân loại, tri thức và nhắc việc; mở Chi tiết phối hợp tác tử để xem trace hoặc bấm Tải kết quả phiên.
 
-Để nhập hồ sơ riêng, mở mục 21 trường khảo sát, bỏ chọn mẫu và sửa JSON. Giữ đủ 21 trường; Age là mã nhóm tuổi, không nhập tuổi 55 vào trường đó. Model không nhận glucose. Checkbox glucose bổ sung chỉ điều khiển luật cảnh báo, đơn vị mg/dL.
+Để nhập hồ sơ riêng, chọn Nhập JSON trong Nguồn hồ sơ rồi sửa 21 chỉ báo. Chọn tác vụ, mô hình và câu hỏi, sau đó bấm Bắt đầu phân tích. Age là mã nhóm tuổi 1–13. Mục Nhật ký & số đo chứa số ngày chưa ghi, mệt vì thông báo và số đo glucose mg/dL; số đo này dùng cho nhánh cảnh báo.
 
 Không chọn lưu audit nếu chỉ trình diễn. Nếu chọn, SQLite local chứa câu hỏi/kết quả/trace; không có chức năng đăng nhập hay bảo vệ hồ sơ bệnh nhân thật.
 

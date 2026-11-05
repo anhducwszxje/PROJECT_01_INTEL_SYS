@@ -2,7 +2,7 @@
   {
     "case": "risk_complete",
     "status": "completed",
-    "text": "Mô hình random_forest: điểm 0.147, ngưỡng 0.230, dự đoán nhãn 0. Điểm mô hình cho nhãn gộp tiền tiểu đường/tiểu đường trong khảo sát UCI; không phải xác suất mắc bệnh trong tương lai.\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
+    "text": "Mô hình random_forest: điểm 0.147, ngưỡng 0.230, dự đoán nhãn 0.",
     "proposals": [
       {
         "kind": "risk",
@@ -11,14 +11,14 @@
         "score": 0.1473280869876643,
         "threshold": 0.22999999999999998,
         "positive": false,
-        "meaning": "Điểm mô hình cho nhãn gộp tiền tiểu đường/tiểu đường trong khảo sát UCI; không phải xác suất mắc bệnh trong tương lai."
+        "meaning": "Điểm phân loại nhãn tiền tiểu đường/tiểu đường trên dữ liệu khảo sát UCI."
       }
     ],
     "review": {
       "status": "approved",
       "reasons": []
     },
-    "run_id": "47065cf1-b096-49de-ad44-69ae0ac4755e",
+    "run_id": "9e4fc675-c304-44cf-a8e7-e45763e81422",
     "question": "Phân loại hồ sơ khảo sát",
     "trace": [
       {
@@ -33,7 +33,7 @@
         "performative": "INFORM",
         "task": "CHECK_SCOPE",
         "status": "completed",
-        "elapsed_ms": 0.029
+        "elapsed_ms": 0.024
       },
       {
         "sender": "Coordinator",
@@ -47,7 +47,7 @@
         "performative": "INFORM",
         "task": "PREDICT_LABEL",
         "status": "completed",
-        "elapsed_ms": 62.005
+        "elapsed_ms": 38.259
       },
       {
         "sender": "Coordinator",
@@ -61,7 +61,7 @@
         "performative": "INFORM",
         "task": "VERIFY",
         "status": "approved",
-        "elapsed_ms": 0.017
+        "elapsed_ms": 0.016
       },
       {
         "sender": "Coordinator",
@@ -75,15 +75,14 @@
         "performative": "INFORM",
         "task": "SUMMARIZE",
         "status": "completed",
-        "elapsed_ms": 0.018
+        "elapsed_ms": 0.012
       }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
+    ]
   },
   {
     "case": "risk_mlp",
     "status": "completed",
-    "text": "Mô hình mlp: điểm 0.144, ngưỡng 0.205, dự đoán nhãn 0. Điểm mô hình cho nhãn gộp tiền tiểu đường/tiểu đường trong khảo sát UCI; không phải xác suất mắc bệnh trong tương lai.\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
+    "text": "Mô hình mlp: điểm 0.144, ngưỡng 0.205, dự đoán nhãn 0.",
     "proposals": [
       {
         "kind": "risk",
@@ -92,14 +91,14 @@
         "score": 0.14449632167816162,
         "threshold": 0.20500000000000002,
         "positive": false,
-        "meaning": "Điểm mô hình cho nhãn gộp tiền tiểu đường/tiểu đường trong khảo sát UCI; không phải xác suất mắc bệnh trong tương lai."
+        "meaning": "Điểm phân loại nhãn tiền tiểu đường/tiểu đường trên dữ liệu khảo sát UCI."
       }
     ],
     "review": {
       "status": "approved",
       "reasons": []
     },
-    "run_id": "c93892eb-b144-4ba1-a880-460c88fad3b0",
+    "run_id": "8551a1da-5e76-44de-91c4-1f7dd02b61df",
     "question": "Chạy MLP",
     "trace": [
       {
@@ -114,7 +113,7 @@
         "performative": "INFORM",
         "task": "CHECK_SCOPE",
         "status": "completed",
-        "elapsed_ms": 0.028
+        "elapsed_ms": 0.018
       },
       {
         "sender": "Coordinator",
@@ -128,7 +127,7 @@
         "performative": "INFORM",
         "task": "PREDICT_LABEL",
         "status": "completed",
-        "elapsed_ms": 4.046
+        "elapsed_ms": 4.261
       },
       {
         "sender": "Coordinator",
@@ -142,7 +141,7 @@
         "performative": "INFORM",
         "task": "VERIFY",
         "status": "approved",
-        "elapsed_ms": 0.01
+        "elapsed_ms": 0.016
       },
       {
         "sender": "Coordinator",
@@ -156,15 +155,14 @@
         "performative": "INFORM",
         "task": "SUMMARIZE",
         "status": "completed",
-        "elapsed_ms": 0.013
+        "elapsed_ms": 0.011
       }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
+    ]
   },
   {
     "case": "risk_missing",
     "status": "needs_input",
-    "text": "Chưa chạy dự đoán: thiếu HighBP, HighChol, CholCheck, BMI, Smoker, Stroke, HeartDiseaseorAttack, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbcCost, GenHlth, MentHlth, PhysHlth, DiffWalk, Sex, Age, Education, Income\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
+    "text": "Chưa chạy dự đoán: thiếu HighBP, HighChol, CholCheck, BMI, Smoker, Stroke, HeartDiseaseorAttack, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbcCost, GenHlth, MentHlth, PhysHlth, DiffWalk, Sex, Age, Education, Income",
     "proposals": [
       {
         "kind": "risk",
@@ -198,7 +196,7 @@
       "status": "approved",
       "reasons": []
     },
-    "run_id": "dff89baa-1284-4a29-95a8-41e03009f36a",
+    "run_id": "1c35d1ee-1012-47fc-bedd-bc3aa85743fa",
     "question": "Phân loại",
     "trace": [
       {
@@ -213,7 +211,7 @@
         "performative": "INFORM",
         "task": "CHECK_SCOPE",
         "status": "completed",
-        "elapsed_ms": 0.02
+        "elapsed_ms": 0.034
       },
       {
         "sender": "Coordinator",
@@ -227,7 +225,7 @@
         "performative": "INFORM",
         "task": "PREDICT_LABEL",
         "status": "needs_input",
-        "elapsed_ms": 0.004
+        "elapsed_ms": 0.008
       },
       {
         "sender": "Coordinator",
@@ -241,7 +239,7 @@
         "performative": "INFORM",
         "task": "VERIFY",
         "status": "approved",
-        "elapsed_ms": 0.004
+        "elapsed_ms": 0.003
       },
       {
         "sender": "Coordinator",
@@ -255,15 +253,14 @@
         "performative": "INFORM",
         "task": "SUMMARIZE",
         "status": "completed",
-        "elapsed_ms": 0.01
+        "elapsed_ms": 0.008
       }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
+    ]
   },
   {
     "case": "risk_invalid",
     "status": "needs_input",
-    "text": "Chưa chạy dự đoán: Age: cần mã hợp lệ trong [1, 13].\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
+    "text": "Chưa chạy dự đoán: Age: cần mã hợp lệ trong [1, 13].",
     "proposals": [
       {
         "kind": "risk",
@@ -275,7 +272,7 @@
       "status": "approved",
       "reasons": []
     },
-    "run_id": "e83a0c11-c4b9-4822-b513-76c9bc9a9402",
+    "run_id": "3475a93a-c89a-422c-a914-3cd9e3e5ad73",
     "question": "Phân loại",
     "trace": [
       {
@@ -290,7 +287,7 @@
         "performative": "INFORM",
         "task": "CHECK_SCOPE",
         "status": "completed",
-        "elapsed_ms": 0.008
+        "elapsed_ms": 0.006
       },
       {
         "sender": "Coordinator",
@@ -304,84 +301,7 @@
         "performative": "INFORM",
         "task": "PREDICT_LABEL",
         "status": "needs_input",
-        "elapsed_ms": 0.018
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Council",
-        "performative": "REQUEST",
-        "task": "VERIFY"
-      },
-      {
-        "sender": "Council",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "VERIFY",
-        "status": "approved",
-        "elapsed_ms": 0.003
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Advisor",
-        "performative": "REQUEST",
-        "task": "SUMMARIZE"
-      },
-      {
-        "sender": "Advisor",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "SUMMARIZE",
-        "status": "completed",
-        "elapsed_ms": 0.003
-      }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
-  },
-  {
-    "case": "risk_nan",
-    "status": "needs_input",
-    "text": "Chưa chạy dự đoán: BMI: cần giá trị số hữu hạn.\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
-    "proposals": [
-      {
-        "kind": "risk",
-        "status": "needs_input",
-        "error": "BMI: cần giá trị số hữu hạn."
-      }
-    ],
-    "review": {
-      "status": "approved",
-      "reasons": []
-    },
-    "run_id": "8f1d02c8-d4db-4411-9e68-1c70e03d9449",
-    "question": "Phân loại",
-    "trace": [
-      {
-        "sender": "Coordinator",
-        "receiver": "Intake",
-        "performative": "REQUEST",
-        "task": "CHECK_SCOPE"
-      },
-      {
-        "sender": "Intake",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "CHECK_SCOPE",
-        "status": "completed",
-        "elapsed_ms": 0.009
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Risk",
-        "performative": "REQUEST",
-        "task": "PREDICT_LABEL"
-      },
-      {
-        "sender": "Risk",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "PREDICT_LABEL",
-        "status": "needs_input",
-        "elapsed_ms": 0.005
+        "elapsed_ms": 0.017
       },
       {
         "sender": "Coordinator",
@@ -411,13 +331,88 @@
         "status": "completed",
         "elapsed_ms": 0.002
       }
+    ]
+  },
+  {
+    "case": "risk_nan",
+    "status": "needs_input",
+    "text": "Chưa chạy dự đoán: BMI: cần giá trị số hữu hạn.",
+    "proposals": [
+      {
+        "kind": "risk",
+        "status": "needs_input",
+        "error": "BMI: cần giá trị số hữu hạn."
+      }
     ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
+    "review": {
+      "status": "approved",
+      "reasons": []
+    },
+    "run_id": "894d064a-99a2-43f2-b820-4511b83a39bd",
+    "question": "Phân loại",
+    "trace": [
+      {
+        "sender": "Coordinator",
+        "receiver": "Intake",
+        "performative": "REQUEST",
+        "task": "CHECK_SCOPE"
+      },
+      {
+        "sender": "Intake",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "CHECK_SCOPE",
+        "status": "completed",
+        "elapsed_ms": 0.008
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Risk",
+        "performative": "REQUEST",
+        "task": "PREDICT_LABEL"
+      },
+      {
+        "sender": "Risk",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "PREDICT_LABEL",
+        "status": "needs_input",
+        "elapsed_ms": 0.005
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Council",
+        "performative": "REQUEST",
+        "task": "VERIFY"
+      },
+      {
+        "sender": "Council",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "VERIFY",
+        "status": "approved",
+        "elapsed_ms": 0.002
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Advisor",
+        "performative": "REQUEST",
+        "task": "SUMMARIZE"
+      },
+      {
+        "sender": "Advisor",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "SUMMARIZE",
+        "status": "completed",
+        "elapsed_ms": 0.002
+      }
+    ]
   },
   {
     "case": "knowledge_a1c",
     "status": "completed",
-    "text": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng, khác số đo tức thời. Cần đọc kết quả cùng bối cảnh và hướng dẫn chuyên môn. [D06]\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
+    "text": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng, khác số đo tức thời. Cần đọc kết quả cùng bối cảnh và hướng dẫn chuyên môn. [D06]",
     "proposals": [
       {
         "kind": "knowledge",
@@ -453,7 +448,7 @@
       "status": "approved",
       "reasons": []
     },
-    "run_id": "f2d8ff5b-b859-4685-95fc-a6a1be4169c8",
+    "run_id": "0bfb22b5-5556-4bdc-b4c2-533a7723d483",
     "question": "HbA1c là gì?",
     "trace": [
       {
@@ -482,309 +477,7 @@
         "performative": "INFORM",
         "task": "RETRIEVE",
         "status": "completed",
-        "elapsed_ms": 2.328
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Council",
-        "performative": "REQUEST",
-        "task": "VERIFY"
-      },
-      {
-        "sender": "Council",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "VERIFY",
-        "status": "approved",
-        "elapsed_ms": 0.011
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Advisor",
-        "performative": "REQUEST",
-        "task": "SUMMARIZE"
-      },
-      {
-        "sender": "Advisor",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "SUMMARIZE",
-        "status": "completed",
-        "elapsed_ms": 0.005
-      }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
-  },
-  {
-    "case": "knowledge_food",
-    "status": "completed",
-    "text": "Carbohydrate ảnh hưởng đường huyết; tốc độ thay đổi còn phụ thuộc thực phẩm ăn kèm. Không dùng thông tin chung này để tự tính liều insulin. [D11]\n\nLựa chọn thực phẩm và khẩu phần cần phù hợp mục tiêu, thói quen và thuốc đang dùng. Có thể tìm hiểu phương pháp đĩa ăn cùng chuyên viên dinh dưỡng. [D10]\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
-    "proposals": [
-      {
-        "kind": "knowledge",
-        "status": "completed",
-        "evidence": [
-          {
-            "id": "D11",
-            "title": "Carbohydrate",
-            "concepts": [
-              "carbs"
-            ],
-            "keywords": [
-              "carbohydrate",
-              "carb",
-              "tinh bột",
-              "đếm carb"
-            ],
-            "content": "Carbohydrate ảnh hưởng đường huyết; tốc độ thay đổi còn phụ thuộc thực phẩm ăn kèm. Không dùng thông tin chung này để tự tính liều insulin.",
-            "source_title": "CDC Diabetes Meal Planning",
-            "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
-            "checked_at": "2026-11-05",
-            "score": 0.2997981840015003,
-            "matched_concepts": [
-              "carbs"
-            ],
-            "lexical_score": 0.17979818400150033
-          },
-          {
-            "id": "D10",
-            "title": "Ăn uống và khẩu phần",
-            "concepts": [
-              "nutrition"
-            ],
-            "keywords": [
-              "ăn uống",
-              "dinh dưỡng",
-              "đĩa ăn",
-              "khẩu phần"
-            ],
-            "content": "Lựa chọn thực phẩm và khẩu phần cần phù hợp mục tiêu, thói quen và thuốc đang dùng. Có thể tìm hiểu phương pháp đĩa ăn cùng chuyên viên dinh dưỡng.",
-            "source_title": "CDC Diabetes Meal Planning",
-            "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
-            "checked_at": "2026-11-05",
-            "score": 0.29453756320754815,
-            "matched_concepts": [
-              "nutrition"
-            ],
-            "lexical_score": 0.17453756320754815
-          }
-        ],
-        "text": "Carbohydrate ảnh hưởng đường huyết; tốc độ thay đổi còn phụ thuộc thực phẩm ăn kèm. Không dùng thông tin chung này để tự tính liều insulin. [D11]\n\nLựa chọn thực phẩm và khẩu phần cần phù hợp mục tiêu, thói quen và thuốc đang dùng. Có thể tìm hiểu phương pháp đĩa ăn cùng chuyên viên dinh dưỡng. [D10]"
-      }
-    ],
-    "review": {
-      "status": "approved",
-      "reasons": []
-    },
-    "run_id": "facc059c-c4b3-40e5-87a2-1ad158235a03",
-    "question": "Dinh dưỡng và tinh bột",
-    "trace": [
-      {
-        "sender": "Coordinator",
-        "receiver": "Intake",
-        "performative": "REQUEST",
-        "task": "CHECK_SCOPE"
-      },
-      {
-        "sender": "Intake",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "CHECK_SCOPE",
-        "status": "completed",
-        "elapsed_ms": 0.015
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Knowledge",
-        "performative": "REQUEST",
-        "task": "RETRIEVE"
-      },
-      {
-        "sender": "Knowledge",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "RETRIEVE",
-        "status": "completed",
-        "elapsed_ms": 2.114
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Council",
-        "performative": "REQUEST",
-        "task": "VERIFY"
-      },
-      {
-        "sender": "Council",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "VERIFY",
-        "status": "approved",
-        "elapsed_ms": 0.006
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Advisor",
-        "performative": "REQUEST",
-        "task": "SUMMARIZE"
-      },
-      {
-        "sender": "Advisor",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "SUMMARIZE",
-        "status": "completed",
-        "elapsed_ms": 0.003
-      }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
-  },
-  {
-    "case": "knowledge_activity",
-    "status": "completed",
-    "text": "Vận động đều đặn hỗ trợ quản lý đường huyết. Bắt đầu phù hợp khả năng và hỏi nhân viên y tế về hoạt động hoặc giới hạn cần lưu ý. [D12]\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
-    "proposals": [
-      {
-        "kind": "knowledge",
-        "status": "completed",
-        "evidence": [
-          {
-            "id": "D12",
-            "title": "Vận động",
-            "concepts": [
-              "activity"
-            ],
-            "keywords": [
-              "vận động",
-              "đi bộ",
-              "tập luyện",
-              "thể dục"
-            ],
-            "content": "Vận động đều đặn hỗ trợ quản lý đường huyết. Bắt đầu phù hợp khả năng và hỏi nhân viên y tế về hoạt động hoặc giới hạn cần lưu ý.",
-            "source_title": "CDC Get Active",
-            "source_url": "https://www.cdc.gov/diabetes/living-with/physical-activity.html",
-            "checked_at": "2026-11-05",
-            "score": 0.6851120954527028,
-            "matched_concepts": [
-              "activity"
-            ],
-            "lexical_score": 0.5651120954527028
-          }
-        ],
-        "text": "Vận động đều đặn hỗ trợ quản lý đường huyết. Bắt đầu phù hợp khả năng và hỏi nhân viên y tế về hoạt động hoặc giới hạn cần lưu ý. [D12]"
-      }
-    ],
-    "review": {
-      "status": "approved",
-      "reasons": []
-    },
-    "run_id": "0c1d35dc-f73c-4ccc-8642-4db49d1d4792",
-    "question": "Vận động và đi bộ",
-    "trace": [
-      {
-        "sender": "Coordinator",
-        "receiver": "Intake",
-        "performative": "REQUEST",
-        "task": "CHECK_SCOPE"
-      },
-      {
-        "sender": "Intake",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "CHECK_SCOPE",
-        "status": "completed",
-        "elapsed_ms": 0.01
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Knowledge",
-        "performative": "REQUEST",
-        "task": "RETRIEVE"
-      },
-      {
-        "sender": "Knowledge",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "RETRIEVE",
-        "status": "completed",
-        "elapsed_ms": 2.179
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Council",
-        "performative": "REQUEST",
-        "task": "VERIFY"
-      },
-      {
-        "sender": "Council",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "VERIFY",
-        "status": "approved",
-        "elapsed_ms": 0.007
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Advisor",
-        "performative": "REQUEST",
-        "task": "SUMMARIZE"
-      },
-      {
-        "sender": "Advisor",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "SUMMARIZE",
-        "status": "completed",
-        "elapsed_ms": 0.003
-      }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
-  },
-  {
-    "case": "knowledge_unknown",
-    "status": "insufficient_evidence",
-    "text": "Kho tri thức chưa có căn cứ phù hợp. Hãy hỏi về xét nghiệm, theo dõi hoặc lối sống.\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
-    "proposals": [
-      {
-        "kind": "knowledge",
-        "status": "insufficient_evidence",
-        "evidence": [],
-        "text": "Kho tri thức chưa có căn cứ phù hợp. Hãy hỏi về xét nghiệm, theo dõi hoặc lối sống."
-      }
-    ],
-    "review": {
-      "status": "approved",
-      "reasons": []
-    },
-    "run_id": "4cf9e5a7-95a3-463c-810a-060b39a23e38",
-    "question": "Vệ tinh Sao Hỏa",
-    "trace": [
-      {
-        "sender": "Coordinator",
-        "receiver": "Intake",
-        "performative": "REQUEST",
-        "task": "CHECK_SCOPE"
-      },
-      {
-        "sender": "Intake",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "CHECK_SCOPE",
-        "status": "completed",
-        "elapsed_ms": 0.01
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Knowledge",
-        "performative": "REQUEST",
-        "task": "RETRIEVE"
-      },
-      {
-        "sender": "Knowledge",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "RETRIEVE",
-        "status": "insufficient_evidence",
-        "elapsed_ms": 2.509
+        "elapsed_ms": 1.922
       },
       {
         "sender": "Coordinator",
@@ -812,29 +505,73 @@
         "performative": "INFORM",
         "task": "SUMMARIZE",
         "status": "completed",
-        "elapsed_ms": 0.004
+        "elapsed_ms": 0.003
       }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
+    ]
   },
   {
-    "case": "knowledge_blank",
-    "status": "insufficient_evidence",
-    "text": "Kho tri thức chưa có căn cứ phù hợp. Hãy hỏi về xét nghiệm, theo dõi hoặc lối sống.\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
+    "case": "knowledge_food",
+    "status": "completed",
+    "text": "Lựa chọn thực phẩm và khẩu phần cần phù hợp mục tiêu, thói quen và thuốc đang dùng. Có thể tìm hiểu phương pháp đĩa ăn cùng chuyên viên dinh dưỡng. [D10]\n\nCarbohydrate ảnh hưởng đường huyết; tốc độ thay đổi còn phụ thuộc thực phẩm ăn kèm. [D11]",
     "proposals": [
       {
         "kind": "knowledge",
-        "status": "insufficient_evidence",
-        "evidence": [],
-        "text": "Kho tri thức chưa có căn cứ phù hợp. Hãy hỏi về xét nghiệm, theo dõi hoặc lối sống."
+        "status": "completed",
+        "evidence": [
+          {
+            "id": "D10",
+            "title": "Ăn uống và khẩu phần",
+            "concepts": [
+              "nutrition"
+            ],
+            "keywords": [
+              "ăn uống",
+              "dinh dưỡng",
+              "đĩa ăn",
+              "khẩu phần"
+            ],
+            "content": "Lựa chọn thực phẩm và khẩu phần cần phù hợp mục tiêu, thói quen và thuốc đang dùng. Có thể tìm hiểu phương pháp đĩa ăn cùng chuyên viên dinh dưỡng.",
+            "source_title": "CDC Diabetes Meal Planning",
+            "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+            "checked_at": "2026-11-05",
+            "score": 0.3198334540066764,
+            "matched_concepts": [
+              "nutrition"
+            ],
+            "lexical_score": 0.19983345400667638
+          },
+          {
+            "id": "D11",
+            "title": "Carbohydrate",
+            "concepts": [
+              "carbs"
+            ],
+            "keywords": [
+              "carbohydrate",
+              "carb",
+              "tinh bột",
+              "đếm carb"
+            ],
+            "content": "Carbohydrate ảnh hưởng đường huyết; tốc độ thay đổi còn phụ thuộc thực phẩm ăn kèm.",
+            "source_title": "CDC Diabetes Meal Planning",
+            "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+            "checked_at": "2026-11-05",
+            "score": 0.2909700486170014,
+            "matched_concepts": [
+              "carbs"
+            ],
+            "lexical_score": 0.17097004861700135
+          }
+        ],
+        "text": "Lựa chọn thực phẩm và khẩu phần cần phù hợp mục tiêu, thói quen và thuốc đang dùng. Có thể tìm hiểu phương pháp đĩa ăn cùng chuyên viên dinh dưỡng. [D10]\n\nCarbohydrate ảnh hưởng đường huyết; tốc độ thay đổi còn phụ thuộc thực phẩm ăn kèm. [D11]"
       }
     ],
     "review": {
       "status": "approved",
       "reasons": []
     },
-    "run_id": "fff59e99-64a0-48ee-b317-c2a6943ae574",
-    "question": "",
+    "run_id": "021ac5eb-da6c-49f0-99b3-7502aba7095d",
+    "question": "Dinh dưỡng và tinh bột",
     "trace": [
       {
         "sender": "Coordinator",
@@ -848,7 +585,7 @@
         "performative": "INFORM",
         "task": "CHECK_SCOPE",
         "status": "completed",
-        "elapsed_ms": 0.007
+        "elapsed_ms": 0.011
       },
       {
         "sender": "Coordinator",
@@ -861,8 +598,8 @@
         "receiver": "Coordinator",
         "performative": "INFORM",
         "task": "RETRIEVE",
-        "status": "insufficient_evidence",
-        "elapsed_ms": 0.005
+        "status": "completed",
+        "elapsed_ms": 1.578
       },
       {
         "sender": "Coordinator",
@@ -876,245 +613,7 @@
         "performative": "INFORM",
         "task": "VERIFY",
         "status": "approved",
-        "elapsed_ms": 0.005
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Advisor",
-        "performative": "REQUEST",
-        "task": "SUMMARIZE"
-      },
-      {
-        "sender": "Advisor",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "SUMMARIZE",
-        "status": "completed",
-        "elapsed_ms": 0.003
-      }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
-  },
-  {
-    "case": "urgent_text",
-    "status": "urgent",
-    "text": "Dấu hiệu bạn mô tả có thể nguy hiểm. Cần trợ giúp y tế khẩn cấp ngay; không chờ kết quả mô hình.",
-    "safety": {
-      "status": "urgent",
-      "text": "Dấu hiệu bạn mô tả có thể nguy hiểm. Cần trợ giúp y tế khẩn cấp ngay; không chờ kết quả mô hình."
-    },
-    "proposals": [],
-    "review": null,
-    "run_id": "ea10967d-258e-4c1a-80f9-a774a75770bd",
-    "question": "Người bệnh đang bất tỉnh",
-    "trace": [
-      {
-        "sender": "Coordinator",
-        "receiver": "Intake",
-        "performative": "REQUEST",
-        "task": "CHECK_SCOPE"
-      },
-      {
-        "sender": "Intake",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "CHECK_SCOPE",
-        "status": "urgent",
-        "elapsed_ms": 0.016
-      }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
-  },
-  {
-    "case": "urgent_seizure",
-    "status": "urgent",
-    "text": "Dấu hiệu bạn mô tả có thể nguy hiểm. Cần trợ giúp y tế khẩn cấp ngay; không chờ kết quả mô hình.",
-    "safety": {
-      "status": "urgent",
-      "text": "Dấu hiệu bạn mô tả có thể nguy hiểm. Cần trợ giúp y tế khẩn cấp ngay; không chờ kết quả mô hình."
-    },
-    "proposals": [],
-    "review": null,
-    "run_id": "86d67262-531f-4676-a5a3-5f89f38d1ed5",
-    "question": "Người bệnh co giật",
-    "trace": [
-      {
-        "sender": "Coordinator",
-        "receiver": "Intake",
-        "performative": "REQUEST",
-        "task": "CHECK_SCOPE"
-      },
-      {
-        "sender": "Intake",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "CHECK_SCOPE",
-        "status": "urgent",
-        "elapsed_ms": 0.012
-      }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
-  },
-  {
-    "case": "urgent_glucose",
-    "status": "urgent",
-    "text": "Số đo dưới 70 mg/dL cần được xử trí kịp thời theo hướng dẫn của nhóm chăm sóc. Liên hệ hỗ trợ y tế; nếu không tỉnh táo hoặc không thể tự xử trí, cần trợ giúp khẩn cấp.",
-    "safety": {
-      "status": "urgent",
-      "text": "Số đo dưới 70 mg/dL cần được xử trí kịp thời theo hướng dẫn của nhóm chăm sóc. Liên hệ hỗ trợ y tế; nếu không tỉnh táo hoặc không thể tự xử trí, cần trợ giúp khẩn cấp.",
-      "source_ids": [
-        "D05"
-      ]
-    },
-    "proposals": [],
-    "review": null,
-    "run_id": "f0dc8dd1-89d9-4bbd-a093-77ac615f62b5",
-    "question": "HbA1c",
-    "trace": [
-      {
-        "sender": "Coordinator",
-        "receiver": "Intake",
-        "performative": "REQUEST",
-        "task": "CHECK_SCOPE"
-      },
-      {
-        "sender": "Intake",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "CHECK_SCOPE",
-        "status": "urgent",
-        "elapsed_ms": 0.011
-      }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
-  },
-  {
-    "case": "invalid_unit_value",
-    "status": "needs_input",
-    "text": "Glucose cần là số hữu hạn trong 10–1000 mg/dL. Kiểm tra đơn vị nhập.",
-    "safety": {
-      "status": "needs_input",
-      "text": "Glucose cần là số hữu hạn trong 10–1000 mg/dL. Kiểm tra đơn vị nhập."
-    },
-    "proposals": [],
-    "review": null,
-    "run_id": "c6e3c95d-0730-44bd-b270-20e6b3fb0d94",
-    "question": "HbA1c",
-    "trace": [
-      {
-        "sender": "Coordinator",
-        "receiver": "Intake",
-        "performative": "REQUEST",
-        "task": "CHECK_SCOPE"
-      },
-      {
-        "sender": "Intake",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "CHECK_SCOPE",
-        "status": "needs_input",
         "elapsed_ms": 0.006
-      }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
-  },
-  {
-    "case": "medication",
-    "status": "out_of_scope",
-    "text": "Hệ thống không kê đơn hoặc điều chỉnh thuốc. Hãy trao đổi với nhân viên y tế.",
-    "safety": {
-      "status": "out_of_scope",
-      "text": "Hệ thống không kê đơn hoặc điều chỉnh thuốc. Hãy trao đổi với nhân viên y tế."
-    },
-    "proposals": [],
-    "review": null,
-    "run_id": "6ed84ac4-c1fa-4eae-b3b3-be383486c44c",
-    "question": "Tăng liều insulin giúp tôi",
-    "trace": [
-      {
-        "sender": "Coordinator",
-        "receiver": "Intake",
-        "performative": "REQUEST",
-        "task": "CHECK_SCOPE"
-      },
-      {
-        "sender": "Intake",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "CHECK_SCOPE",
-        "status": "out_of_scope",
-        "elapsed_ms": 0.016
-      }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
-  },
-  {
-    "case": "reminder",
-    "status": "completed",
-    "text": "Nhắc việc mô phỏng: Gửi gợi ý ghi chép ngắn\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
-    "proposals": [
-      {
-        "status": "completed",
-        "kind": "reminder",
-        "state": 7,
-        "action": 2,
-        "text": "Gửi gợi ý ghi chép ngắn",
-        "q_values": [
-          2.7452448673103103,
-          2.7304166723895116,
-          3.0598261930602013
-        ],
-        "meaning": "Chính sách nhắc nhật ký trong mô phỏng, không phải can thiệp điều trị."
-      }
-    ],
-    "review": {
-      "status": "approved",
-      "reasons": []
-    },
-    "run_id": "2aa697dc-050f-4240-8ec3-9932fc30dfc0",
-    "question": "Nhắc nhật ký",
-    "trace": [
-      {
-        "sender": "Coordinator",
-        "receiver": "Intake",
-        "performative": "REQUEST",
-        "task": "CHECK_SCOPE"
-      },
-      {
-        "sender": "Intake",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "CHECK_SCOPE",
-        "status": "completed",
-        "elapsed_ms": 0.011
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Reminder",
-        "performative": "REQUEST",
-        "task": "PROPOSE_REMINDER"
-      },
-      {
-        "sender": "Reminder",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "PROPOSE_REMINDER",
-        "status": "completed",
-        "elapsed_ms": 0.015
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Council",
-        "performative": "REQUEST",
-        "task": "VERIFY"
-      },
-      {
-        "sender": "Council",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "VERIFY",
-        "status": "approved",
-        "elapsed_ms": 0.004
       },
       {
         "sender": "Coordinator",
@@ -1128,28 +627,51 @@
         "performative": "INFORM",
         "task": "SUMMARIZE",
         "status": "completed",
-        "elapsed_ms": 0.005
+        "elapsed_ms": 0.002
       }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
+    ]
   },
   {
-    "case": "invalid_reminder",
-    "status": "needs_input",
-    "text": "Nhắc việc mô phỏng: gap_days cần 0–3, fatigue cần 0 hoặc 1.\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
+    "case": "knowledge_activity",
+    "status": "completed",
+    "text": "Vận động đều đặn hỗ trợ quản lý đường huyết. Bắt đầu phù hợp khả năng và hỏi nhân viên y tế về hoạt động hoặc giới hạn cần lưu ý. [D12]",
     "proposals": [
       {
-        "status": "needs_input",
-        "kind": "reminder",
-        "error": "gap_days cần 0–3, fatigue cần 0 hoặc 1."
+        "kind": "knowledge",
+        "status": "completed",
+        "evidence": [
+          {
+            "id": "D12",
+            "title": "Vận động",
+            "concepts": [
+              "activity"
+            ],
+            "keywords": [
+              "vận động",
+              "đi bộ",
+              "tập luyện",
+              "thể dục"
+            ],
+            "content": "Vận động đều đặn hỗ trợ quản lý đường huyết. Bắt đầu phù hợp khả năng và hỏi nhân viên y tế về hoạt động hoặc giới hạn cần lưu ý.",
+            "source_title": "CDC Get Active",
+            "source_url": "https://www.cdc.gov/diabetes/living-with/physical-activity.html",
+            "checked_at": "2026-11-05",
+            "score": 0.6847533071855749,
+            "matched_concepts": [
+              "activity"
+            ],
+            "lexical_score": 0.5647533071855749
+          }
+        ],
+        "text": "Vận động đều đặn hỗ trợ quản lý đường huyết. Bắt đầu phù hợp khả năng và hỏi nhân viên y tế về hoạt động hoặc giới hạn cần lưu ý. [D12]"
       }
     ],
     "review": {
       "status": "approved",
       "reasons": []
     },
-    "run_id": "0b5cdca2-4e41-4b0f-82a0-cf58b619fbb0",
-    "question": "Nhắc",
+    "run_id": "1f61a346-fca1-4d48-9b71-26dd6bae6286",
+    "question": "Vận động và đi bộ",
     "trace": [
       {
         "sender": "Coordinator",
@@ -1167,17 +689,17 @@
       },
       {
         "sender": "Coordinator",
-        "receiver": "Reminder",
+        "receiver": "Knowledge",
         "performative": "REQUEST",
-        "task": "PROPOSE_REMINDER"
+        "task": "RETRIEVE"
       },
       {
-        "sender": "Reminder",
+        "sender": "Knowledge",
         "receiver": "Coordinator",
         "performative": "INFORM",
-        "task": "PROPOSE_REMINDER",
-        "status": "needs_input",
-        "elapsed_ms": 0.002
+        "task": "RETRIEVE",
+        "status": "completed",
+        "elapsed_ms": 1.537
       },
       {
         "sender": "Coordinator",
@@ -1191,7 +713,7 @@
         "performative": "INFORM",
         "task": "VERIFY",
         "status": "approved",
-        "elapsed_ms": 0.023
+        "elapsed_ms": 0.006
       },
       {
         "sender": "Coordinator",
@@ -1205,15 +727,476 @@
         "performative": "INFORM",
         "task": "SUMMARIZE",
         "status": "completed",
-        "elapsed_ms": 0.003
+        "elapsed_ms": 0.002
+      }
+    ]
+  },
+  {
+    "case": "knowledge_unknown",
+    "status": "insufficient_evidence",
+    "text": "Kho tri thức chưa có căn cứ phù hợp. Hãy hỏi về xét nghiệm, theo dõi hoặc lối sống.",
+    "proposals": [
+      {
+        "kind": "knowledge",
+        "status": "insufficient_evidence",
+        "evidence": [],
+        "text": "Kho tri thức chưa có căn cứ phù hợp. Hãy hỏi về xét nghiệm, theo dõi hoặc lối sống."
       }
     ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
+    "review": {
+      "status": "approved",
+      "reasons": []
+    },
+    "run_id": "a9daf1a2-5527-4b54-ade5-db66a63e6b61",
+    "question": "Vệ tinh Sao Hỏa",
+    "trace": [
+      {
+        "sender": "Coordinator",
+        "receiver": "Intake",
+        "performative": "REQUEST",
+        "task": "CHECK_SCOPE"
+      },
+      {
+        "sender": "Intake",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "CHECK_SCOPE",
+        "status": "completed",
+        "elapsed_ms": 0.008
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Knowledge",
+        "performative": "REQUEST",
+        "task": "RETRIEVE"
+      },
+      {
+        "sender": "Knowledge",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "RETRIEVE",
+        "status": "insufficient_evidence",
+        "elapsed_ms": 1.515
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Council",
+        "performative": "REQUEST",
+        "task": "VERIFY"
+      },
+      {
+        "sender": "Council",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "VERIFY",
+        "status": "approved",
+        "elapsed_ms": 0.006
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Advisor",
+        "performative": "REQUEST",
+        "task": "SUMMARIZE"
+      },
+      {
+        "sender": "Advisor",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "SUMMARIZE",
+        "status": "completed",
+        "elapsed_ms": 0.002
+      }
+    ]
+  },
+  {
+    "case": "knowledge_blank",
+    "status": "insufficient_evidence",
+    "text": "Kho tri thức chưa có căn cứ phù hợp. Hãy hỏi về xét nghiệm, theo dõi hoặc lối sống.",
+    "proposals": [
+      {
+        "kind": "knowledge",
+        "status": "insufficient_evidence",
+        "evidence": [],
+        "text": "Kho tri thức chưa có căn cứ phù hợp. Hãy hỏi về xét nghiệm, theo dõi hoặc lối sống."
+      }
+    ],
+    "review": {
+      "status": "approved",
+      "reasons": []
+    },
+    "run_id": "92e2ce4d-bcdc-4761-b82e-0748e05eab76",
+    "question": "",
+    "trace": [
+      {
+        "sender": "Coordinator",
+        "receiver": "Intake",
+        "performative": "REQUEST",
+        "task": "CHECK_SCOPE"
+      },
+      {
+        "sender": "Intake",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "CHECK_SCOPE",
+        "status": "completed",
+        "elapsed_ms": 0.005
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Knowledge",
+        "performative": "REQUEST",
+        "task": "RETRIEVE"
+      },
+      {
+        "sender": "Knowledge",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "RETRIEVE",
+        "status": "insufficient_evidence",
+        "elapsed_ms": 0.003
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Council",
+        "performative": "REQUEST",
+        "task": "VERIFY"
+      },
+      {
+        "sender": "Council",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "VERIFY",
+        "status": "approved",
+        "elapsed_ms": 0.003
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Advisor",
+        "performative": "REQUEST",
+        "task": "SUMMARIZE"
+      },
+      {
+        "sender": "Advisor",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "SUMMARIZE",
+        "status": "completed",
+        "elapsed_ms": 0.001
+      }
+    ]
+  },
+  {
+    "case": "urgent_text",
+    "status": "urgent",
+    "text": "Dấu hiệu bạn mô tả có thể nguy hiểm. Cần trợ giúp y tế khẩn cấp ngay; không chờ kết quả mô hình.",
+    "safety": {
+      "status": "urgent",
+      "text": "Dấu hiệu bạn mô tả có thể nguy hiểm. Cần trợ giúp y tế khẩn cấp ngay; không chờ kết quả mô hình."
+    },
+    "proposals": [],
+    "review": null,
+    "run_id": "f7355e83-20cf-425a-9cf3-a04c64c75626",
+    "question": "Người bệnh đang bất tỉnh",
+    "trace": [
+      {
+        "sender": "Coordinator",
+        "receiver": "Intake",
+        "performative": "REQUEST",
+        "task": "CHECK_SCOPE"
+      },
+      {
+        "sender": "Intake",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "CHECK_SCOPE",
+        "status": "urgent",
+        "elapsed_ms": 0.009
+      }
+    ]
+  },
+  {
+    "case": "urgent_seizure",
+    "status": "urgent",
+    "text": "Dấu hiệu bạn mô tả có thể nguy hiểm. Cần trợ giúp y tế khẩn cấp ngay; không chờ kết quả mô hình.",
+    "safety": {
+      "status": "urgent",
+      "text": "Dấu hiệu bạn mô tả có thể nguy hiểm. Cần trợ giúp y tế khẩn cấp ngay; không chờ kết quả mô hình."
+    },
+    "proposals": [],
+    "review": null,
+    "run_id": "d1644cb1-28e0-494f-bd5e-33c3204acc0b",
+    "question": "Người bệnh co giật",
+    "trace": [
+      {
+        "sender": "Coordinator",
+        "receiver": "Intake",
+        "performative": "REQUEST",
+        "task": "CHECK_SCOPE"
+      },
+      {
+        "sender": "Intake",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "CHECK_SCOPE",
+        "status": "urgent",
+        "elapsed_ms": 0.006
+      }
+    ]
+  },
+  {
+    "case": "urgent_glucose",
+    "status": "urgent",
+    "text": "Số đo dưới 70 mg/dL cần được xử trí kịp thời theo hướng dẫn của nhóm chăm sóc. Liên hệ hỗ trợ y tế; nếu không tỉnh táo hoặc không thể tự xử trí, cần trợ giúp khẩn cấp.",
+    "safety": {
+      "status": "urgent",
+      "text": "Số đo dưới 70 mg/dL cần được xử trí kịp thời theo hướng dẫn của nhóm chăm sóc. Liên hệ hỗ trợ y tế; nếu không tỉnh táo hoặc không thể tự xử trí, cần trợ giúp khẩn cấp.",
+      "source_ids": [
+        "D05"
+      ]
+    },
+    "proposals": [],
+    "review": null,
+    "run_id": "e0eaf39e-095f-4774-84aa-d05b20ab7375",
+    "question": "HbA1c",
+    "trace": [
+      {
+        "sender": "Coordinator",
+        "receiver": "Intake",
+        "performative": "REQUEST",
+        "task": "CHECK_SCOPE"
+      },
+      {
+        "sender": "Intake",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "CHECK_SCOPE",
+        "status": "urgent",
+        "elapsed_ms": 0.007
+      }
+    ]
+  },
+  {
+    "case": "invalid_unit_value",
+    "status": "needs_input",
+    "text": "Glucose cần là số hữu hạn trong 10–1000 mg/dL. Kiểm tra đơn vị nhập.",
+    "safety": {
+      "status": "needs_input",
+      "text": "Glucose cần là số hữu hạn trong 10–1000 mg/dL. Kiểm tra đơn vị nhập."
+    },
+    "proposals": [],
+    "review": null,
+    "run_id": "5e4c71bd-effd-41a5-9d16-44fa23a7d8a5",
+    "question": "HbA1c",
+    "trace": [
+      {
+        "sender": "Coordinator",
+        "receiver": "Intake",
+        "performative": "REQUEST",
+        "task": "CHECK_SCOPE"
+      },
+      {
+        "sender": "Intake",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "CHECK_SCOPE",
+        "status": "needs_input",
+        "elapsed_ms": 0.003
+      }
+    ]
+  },
+  {
+    "case": "medication",
+    "status": "out_of_scope",
+    "text": "Hệ thống không kê đơn hoặc điều chỉnh thuốc. Hãy trao đổi với nhân viên y tế.",
+    "safety": {
+      "status": "out_of_scope",
+      "text": "Hệ thống không kê đơn hoặc điều chỉnh thuốc. Hãy trao đổi với nhân viên y tế."
+    },
+    "proposals": [],
+    "review": null,
+    "run_id": "86b6eda1-2270-4599-a1b7-60858e358d4e",
+    "question": "Tăng liều insulin giúp tôi",
+    "trace": [
+      {
+        "sender": "Coordinator",
+        "receiver": "Intake",
+        "performative": "REQUEST",
+        "task": "CHECK_SCOPE"
+      },
+      {
+        "sender": "Intake",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "CHECK_SCOPE",
+        "status": "out_of_scope",
+        "elapsed_ms": 0.008
+      }
+    ]
+  },
+  {
+    "case": "reminder",
+    "status": "completed",
+    "text": "Nhắc nhật ký: Gửi gợi ý ghi chép ngắn",
+    "proposals": [
+      {
+        "status": "completed",
+        "kind": "reminder",
+        "state": 7,
+        "action": 2,
+        "text": "Gửi gợi ý ghi chép ngắn",
+        "q_values": [
+          2.7452448673103103,
+          2.7304166723895116,
+          3.0598261930602013
+        ],
+        "meaning": "Hành động được chọn từ Q-table theo trạng thái nhắc nhật ký."
+      }
+    ],
+    "review": {
+      "status": "approved",
+      "reasons": []
+    },
+    "run_id": "3681f4cb-389a-4965-9620-33d4282090a8",
+    "question": "Nhắc nhật ký",
+    "trace": [
+      {
+        "sender": "Coordinator",
+        "receiver": "Intake",
+        "performative": "REQUEST",
+        "task": "CHECK_SCOPE"
+      },
+      {
+        "sender": "Intake",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "CHECK_SCOPE",
+        "status": "completed",
+        "elapsed_ms": 0.006
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Reminder",
+        "performative": "REQUEST",
+        "task": "PROPOSE_REMINDER"
+      },
+      {
+        "sender": "Reminder",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "PROPOSE_REMINDER",
+        "status": "completed",
+        "elapsed_ms": 0.011
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Council",
+        "performative": "REQUEST",
+        "task": "VERIFY"
+      },
+      {
+        "sender": "Council",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "VERIFY",
+        "status": "approved",
+        "elapsed_ms": 0.003
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Advisor",
+        "performative": "REQUEST",
+        "task": "SUMMARIZE"
+      },
+      {
+        "sender": "Advisor",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "SUMMARIZE",
+        "status": "completed",
+        "elapsed_ms": 0.002
+      }
+    ]
+  },
+  {
+    "case": "invalid_reminder",
+    "status": "needs_input",
+    "text": "Nhắc nhật ký: gap_days cần 0–3, fatigue cần 0 hoặc 1.",
+    "proposals": [
+      {
+        "status": "needs_input",
+        "kind": "reminder",
+        "error": "gap_days cần 0–3, fatigue cần 0 hoặc 1."
+      }
+    ],
+    "review": {
+      "status": "approved",
+      "reasons": []
+    },
+    "run_id": "85114ce9-c038-4401-aa10-f70c517ff038",
+    "question": "Nhắc",
+    "trace": [
+      {
+        "sender": "Coordinator",
+        "receiver": "Intake",
+        "performative": "REQUEST",
+        "task": "CHECK_SCOPE"
+      },
+      {
+        "sender": "Intake",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "CHECK_SCOPE",
+        "status": "completed",
+        "elapsed_ms": 0.005
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Reminder",
+        "performative": "REQUEST",
+        "task": "PROPOSE_REMINDER"
+      },
+      {
+        "sender": "Reminder",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "PROPOSE_REMINDER",
+        "status": "needs_input",
+        "elapsed_ms": 0.001
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Council",
+        "performative": "REQUEST",
+        "task": "VERIFY"
+      },
+      {
+        "sender": "Council",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "VERIFY",
+        "status": "approved",
+        "elapsed_ms": 0.002
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Advisor",
+        "performative": "REQUEST",
+        "task": "SUMMARIZE"
+      },
+      {
+        "sender": "Advisor",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "SUMMARIZE",
+        "status": "completed",
+        "elapsed_ms": 0.002
+      }
+    ]
   },
   {
     "case": "consult",
     "status": "completed",
-    "text": "Mô hình random_forest: điểm 0.147, ngưỡng 0.230, dự đoán nhãn 0. Điểm mô hình cho nhãn gộp tiền tiểu đường/tiểu đường trong khảo sát UCI; không phải xác suất mắc bệnh trong tương lai.\n\nTheo dõi và trao đổi kết quả với nhóm chăm sóc giúp quản lý bệnh. Project gợi ý ghi giá trị, thời gian, đơn vị và bối cảnh; lịch đo cần thống nhất với nhân viên y tế. [D08]\n\nHbA1c phản ánh đường huyết trung bình khoảng ba tháng, khác số đo tức thời. Cần đọc kết quả cùng bối cảnh và hướng dẫn chuyên môn. [D06]\n\nNhắc việc mô phỏng: Gửi gợi ý ghi chép ngắn\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
+    "text": "Mô hình random_forest: điểm 0.147, ngưỡng 0.230, dự đoán nhãn 0.\n\nTheo dõi và trao đổi kết quả với nhóm chăm sóc giúp quản lý bệnh. Project gợi ý ghi giá trị, thời gian, đơn vị và bối cảnh; lịch đo cần thống nhất với nhân viên y tế. [D08]\n\nHbA1c phản ánh đường huyết trung bình khoảng ba tháng, khác số đo tức thời. Cần đọc kết quả cùng bối cảnh và hướng dẫn chuyên môn. [D06]\n\nNhắc nhật ký: Gửi gợi ý ghi chép ngắn",
     "proposals": [
       {
         "kind": "risk",
@@ -1222,7 +1205,7 @@
         "score": 0.1473280869876643,
         "threshold": 0.22999999999999998,
         "positive": false,
-        "meaning": "Điểm mô hình cho nhãn gộp tiền tiểu đường/tiểu đường trong khảo sát UCI; không phải xác suất mắc bệnh trong tương lai."
+        "meaning": "Điểm phân loại nhãn tiền tiểu đường/tiểu đường trên dữ liệu khảo sát UCI."
       },
       {
         "kind": "knowledge",
@@ -1244,11 +1227,11 @@
             "source_title": "NIDDK Managing Diabetes",
             "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
             "checked_at": "2026-11-05",
-            "score": 0.4400374737550575,
+            "score": 0.4382652540974106,
             "matched_concepts": [
               "journal"
             ],
-            "lexical_score": 0.3200374737550575
+            "lexical_score": 0.3182652540974106
           },
           {
             "id": "D06",
@@ -1286,14 +1269,14 @@
           3.1595542316023364,
           3.400832814083716
         ],
-        "meaning": "Chính sách nhắc nhật ký trong mô phỏng, không phải can thiệp điều trị."
+        "meaning": "Hành động được chọn từ Q-table theo trạng thái nhắc nhật ký."
       }
     ],
     "review": {
       "status": "approved",
       "reasons": []
     },
-    "run_id": "967143cb-1d6c-461d-aaed-be6c03a5256d",
+    "run_id": "89fc29ce-338d-46a8-bdcc-1cf68dce6dce",
     "question": "Nhật ký và HbA1c",
     "trace": [
       {
@@ -1308,7 +1291,7 @@
         "performative": "INFORM",
         "task": "CHECK_SCOPE",
         "status": "completed",
-        "elapsed_ms": 0.014
+        "elapsed_ms": 0.007
       },
       {
         "sender": "Coordinator",
@@ -1322,7 +1305,7 @@
         "performative": "INFORM",
         "task": "PREDICT_LABEL",
         "status": "completed",
-        "elapsed_ms": 62.303
+        "elapsed_ms": 38.525
       },
       {
         "sender": "Coordinator",
@@ -1336,7 +1319,7 @@
         "performative": "INFORM",
         "task": "RETRIEVE",
         "status": "completed",
-        "elapsed_ms": 4.089
+        "elapsed_ms": 2.029
       },
       {
         "sender": "Coordinator",
@@ -1350,7 +1333,7 @@
         "performative": "INFORM",
         "task": "PROPOSE_REMINDER",
         "status": "completed",
-        "elapsed_ms": 0.104
+        "elapsed_ms": 0.011
       },
       {
         "sender": "Coordinator",
@@ -1364,7 +1347,7 @@
         "performative": "INFORM",
         "task": "VERIFY",
         "status": "approved",
-        "elapsed_ms": 0.016
+        "elapsed_ms": 0.014
       },
       {
         "sender": "Coordinator",
@@ -1378,15 +1361,14 @@
         "performative": "INFORM",
         "task": "SUMMARIZE",
         "status": "completed",
-        "elapsed_ms": 0.016
+        "elapsed_ms": 0.008
       }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
+    ]
   },
   {
     "case": "consult_missing",
     "status": "needs_input",
-    "text": "Chưa chạy dự đoán: thiếu HighBP, HighChol, CholCheck, BMI, Smoker, Stroke, HeartDiseaseorAttack, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbcCost, GenHlth, MentHlth, PhysHlth, DiffWalk, Sex, Age, Education, Income\n\nTheo dõi và trao đổi kết quả với nhóm chăm sóc giúp quản lý bệnh. Project gợi ý ghi giá trị, thời gian, đơn vị và bối cảnh; lịch đo cần thống nhất với nhân viên y tế. [D08]\n\nNhắc việc mô phỏng: Nhắc ghi nhật ký\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
+    "text": "Chưa chạy dự đoán: thiếu HighBP, HighChol, CholCheck, BMI, Smoker, Stroke, HeartDiseaseorAttack, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbcCost, GenHlth, MentHlth, PhysHlth, DiffWalk, Sex, Age, Education, Income\n\nTheo dõi và trao đổi kết quả với nhóm chăm sóc giúp quản lý bệnh. Project gợi ý ghi giá trị, thời gian, đơn vị và bối cảnh; lịch đo cần thống nhất với nhân viên y tế. [D08]\n\nNhắc nhật ký: Nhắc ghi nhật ký",
     "proposals": [
       {
         "kind": "risk",
@@ -1435,11 +1417,11 @@
             "source_title": "NIDDK Managing Diabetes",
             "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
             "checked_at": "2026-11-05",
-            "score": 0.47352661289919334,
+            "score": 0.4715689458624862,
             "matched_concepts": [
               "journal"
             ],
-            "lexical_score": 0.35352661289919335
+            "lexical_score": 0.3515689458624862
           }
         ],
         "text": "Theo dõi và trao đổi kết quả với nhóm chăm sóc giúp quản lý bệnh. Project gợi ý ghi giá trị, thời gian, đơn vị và bối cảnh; lịch đo cần thống nhất với nhân viên y tế. [D08]"
@@ -1455,14 +1437,14 @@
           3.82258666637035,
           3.5160448154783492
         ],
-        "meaning": "Chính sách nhắc nhật ký trong mô phỏng, không phải can thiệp điều trị."
+        "meaning": "Hành động được chọn từ Q-table theo trạng thái nhắc nhật ký."
       }
     ],
     "review": {
       "status": "approved",
       "reasons": []
     },
-    "run_id": "51a1a348-19b9-4a39-99db-a16efebdcf6d",
+    "run_id": "a0b66c3d-56d0-429a-af3a-4da239b84f60",
     "question": "Nhật ký",
     "trace": [
       {
@@ -1491,7 +1473,7 @@
         "performative": "INFORM",
         "task": "PREDICT_LABEL",
         "status": "needs_input",
-        "elapsed_ms": 0.009
+        "elapsed_ms": 0.005
       },
       {
         "sender": "Coordinator",
@@ -1505,135 +1487,7 @@
         "performative": "INFORM",
         "task": "RETRIEVE",
         "status": "completed",
-        "elapsed_ms": 1.933
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Reminder",
-        "performative": "REQUEST",
-        "task": "PROPOSE_REMINDER"
-      },
-      {
-        "sender": "Reminder",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "PROPOSE_REMINDER",
-        "status": "completed",
-        "elapsed_ms": 0.014
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Council",
-        "performative": "REQUEST",
-        "task": "VERIFY"
-      },
-      {
-        "sender": "Council",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "VERIFY",
-        "status": "approved",
-        "elapsed_ms": 0.01
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Advisor",
-        "performative": "REQUEST",
-        "task": "SUMMARIZE"
-      },
-      {
-        "sender": "Advisor",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "SUMMARIZE",
-        "status": "completed",
-        "elapsed_ms": 0.037
-      }
-    ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
-  },
-  {
-    "case": "consult_unknown",
-    "status": "insufficient_evidence",
-    "text": "Mô hình random_forest: điểm 0.147, ngưỡng 0.230, dự đoán nhãn 0. Điểm mô hình cho nhãn gộp tiền tiểu đường/tiểu đường trong khảo sát UCI; không phải xác suất mắc bệnh trong tương lai.\n\nKho tri thức chưa có căn cứ phù hợp. Hãy hỏi về xét nghiệm, theo dõi hoặc lối sống.\n\nNhắc việc mô phỏng: Nhắc ghi nhật ký\n\nBạn có thể mang thông tin và câu hỏi tới nhân viên y tế để được đánh giá phù hợp. Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị.",
-    "proposals": [
-      {
-        "kind": "risk",
-        "status": "completed",
-        "model": "random_forest",
-        "score": 0.1473280869876643,
-        "threshold": 0.22999999999999998,
-        "positive": false,
-        "meaning": "Điểm mô hình cho nhãn gộp tiền tiểu đường/tiểu đường trong khảo sát UCI; không phải xác suất mắc bệnh trong tương lai."
-      },
-      {
-        "kind": "knowledge",
-        "status": "insufficient_evidence",
-        "evidence": [],
-        "text": "Kho tri thức chưa có căn cứ phù hợp. Hãy hỏi về xét nghiệm, theo dõi hoặc lối sống."
-      },
-      {
-        "status": "completed",
-        "kind": "reminder",
-        "state": 0,
-        "action": 1,
-        "text": "Nhắc ghi nhật ký",
-        "q_values": [
-          3.5226878730541324,
-          3.82258666637035,
-          3.5160448154783492
-        ],
-        "meaning": "Chính sách nhắc nhật ký trong mô phỏng, không phải can thiệp điều trị."
-      }
-    ],
-    "review": {
-      "status": "approved",
-      "reasons": []
-    },
-    "run_id": "98833f52-8cc7-4194-9285-96cea393cfc0",
-    "question": "Vệ tinh Sao Hỏa",
-    "trace": [
-      {
-        "sender": "Coordinator",
-        "receiver": "Intake",
-        "performative": "REQUEST",
-        "task": "CHECK_SCOPE"
-      },
-      {
-        "sender": "Intake",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "CHECK_SCOPE",
-        "status": "completed",
-        "elapsed_ms": 0.014
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Risk",
-        "performative": "REQUEST",
-        "task": "PREDICT_LABEL"
-      },
-      {
-        "sender": "Risk",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "PREDICT_LABEL",
-        "status": "completed",
-        "elapsed_ms": 37.48
-      },
-      {
-        "sender": "Coordinator",
-        "receiver": "Knowledge",
-        "performative": "REQUEST",
-        "task": "RETRIEVE"
-      },
-      {
-        "sender": "Knowledge",
-        "receiver": "Coordinator",
-        "performative": "INFORM",
-        "task": "RETRIEVE",
-        "status": "insufficient_evidence",
-        "elapsed_ms": 2.326
+        "elapsed_ms": 2.499
       },
       {
         "sender": "Coordinator",
@@ -1661,7 +1515,7 @@
         "performative": "INFORM",
         "task": "VERIFY",
         "status": "approved",
-        "elapsed_ms": 0.01
+        "elapsed_ms": 0.007
       },
       {
         "sender": "Coordinator",
@@ -1675,9 +1529,135 @@
         "performative": "INFORM",
         "task": "SUMMARIZE",
         "status": "completed",
-        "elapsed_ms": 0.009
+        "elapsed_ms": 0.028
+      }
+    ]
+  },
+  {
+    "case": "consult_unknown",
+    "status": "insufficient_evidence",
+    "text": "Mô hình random_forest: điểm 0.147, ngưỡng 0.230, dự đoán nhãn 0.\n\nKho tri thức chưa có căn cứ phù hợp. Hãy hỏi về xét nghiệm, theo dõi hoặc lối sống.\n\nNhắc nhật ký: Nhắc ghi nhật ký",
+    "proposals": [
+      {
+        "kind": "risk",
+        "status": "completed",
+        "model": "random_forest",
+        "score": 0.1473280869876643,
+        "threshold": 0.22999999999999998,
+        "positive": false,
+        "meaning": "Điểm phân loại nhãn tiền tiểu đường/tiểu đường trên dữ liệu khảo sát UCI."
+      },
+      {
+        "kind": "knowledge",
+        "status": "insufficient_evidence",
+        "evidence": [],
+        "text": "Kho tri thức chưa có căn cứ phù hợp. Hãy hỏi về xét nghiệm, theo dõi hoặc lối sống."
+      },
+      {
+        "status": "completed",
+        "kind": "reminder",
+        "state": 0,
+        "action": 1,
+        "text": "Nhắc ghi nhật ký",
+        "q_values": [
+          3.5226878730541324,
+          3.82258666637035,
+          3.5160448154783492
+        ],
+        "meaning": "Hành động được chọn từ Q-table theo trạng thái nhắc nhật ký."
       }
     ],
-    "disclaimer": "Sản phẩm học tập; không chẩn đoán, kê đơn hoặc thay đổi điều trị."
+    "review": {
+      "status": "approved",
+      "reasons": []
+    },
+    "run_id": "94f5b440-b6de-4076-a060-0f14668a7cb5",
+    "question": "Vệ tinh Sao Hỏa",
+    "trace": [
+      {
+        "sender": "Coordinator",
+        "receiver": "Intake",
+        "performative": "REQUEST",
+        "task": "CHECK_SCOPE"
+      },
+      {
+        "sender": "Intake",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "CHECK_SCOPE",
+        "status": "completed",
+        "elapsed_ms": 0.017
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Risk",
+        "performative": "REQUEST",
+        "task": "PREDICT_LABEL"
+      },
+      {
+        "sender": "Risk",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "PREDICT_LABEL",
+        "status": "completed",
+        "elapsed_ms": 37.943
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Knowledge",
+        "performative": "REQUEST",
+        "task": "RETRIEVE"
+      },
+      {
+        "sender": "Knowledge",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "RETRIEVE",
+        "status": "insufficient_evidence",
+        "elapsed_ms": 3.143
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Reminder",
+        "performative": "REQUEST",
+        "task": "PROPOSE_REMINDER"
+      },
+      {
+        "sender": "Reminder",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "PROPOSE_REMINDER",
+        "status": "completed",
+        "elapsed_ms": 0.014
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Council",
+        "performative": "REQUEST",
+        "task": "VERIFY"
+      },
+      {
+        "sender": "Council",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "VERIFY",
+        "status": "approved",
+        "elapsed_ms": 0.009
+      },
+      {
+        "sender": "Coordinator",
+        "receiver": "Advisor",
+        "performative": "REQUEST",
+        "task": "SUMMARIZE"
+      },
+      {
+        "sender": "Advisor",
+        "receiver": "Coordinator",
+        "performative": "INFORM",
+        "task": "SUMMARIZE",
+        "status": "completed",
+        "elapsed_ms": 0.008
+      }
+    ]
   }
 ]

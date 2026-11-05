@@ -15,9 +15,9 @@ Mở trình duyệt tại \url{http://127.0.0.1:8521}. Dừng server bằng Ctrl
 Gọi trực tiếp Python trong venv giúp tránh lỗi chính sách PowerShell đối với Activate.ps1. Server chỉ bind localhost; project chưa có cấu hình triển khai công khai, đăng nhập hay phân quyền. Khi port 8521 đang được dùng, đổi port và mở đúng URL mới.
 
 \section{Các tab và luồng thao tác}
-Giao diện có bốn tab. Hội chẩn demo nhận tác vụ, model, câu hỏi, hồ sơ và trạng thái reminder. Tri thức và đồ thị hiển thị ghi chú có URL, điểm truy xuất và quan hệ. Thực nghiệm đọc bảng test, ROC/PR, RL và kiểm tra tích hợp từ artifact. Hướng dẫn cung cấp các lệnh khởi chạy và tái lập.
+Giao diện dashboard có bốn tab. Hội chẩn demo có ba nút chạy nhanh, bảy thẻ trạng thái tác tử và vùng thiết lập hồ sơ/câu hỏi. Kết quả chia thành vòng điểm phân loại, các thẻ tri thức và hành động nhắc việc. Tri thức và đồ thị đặt ghi chú có URL cạnh bản đồ khái niệm. Thực nghiệm có biểu đồ tương tác để đổi giữa AUC, Average Precision và F1, cùng bảng/đường cong chi tiết. Hướng dẫn cung cấp các lệnh khởi chạy và tái lập.
 
-Mặc định giao diện dùng hồ sơ mẫu lấy từ train để minh họa luồng. Đây không phải hồ sơ của người trình diễn và không dùng để chứng minh độ chính xác. Người dùng có thể bỏ chọn mẫu và nhập JSON; phải giữ đủ schema để chạy Risk. Nếu chưa đủ dữ liệu, phần tri thức vẫn có thể hiển thị nhưng trạng thái chung yêu cầu bổ sung.
+Mặc định giao diện dùng hồ sơ mẫu lấy từ train. Người dùng chọn Nhập JSON để thay 21 chỉ báo, chọn tác vụ và bấm Bắt đầu phân tích. Mục Nhật ký và số đo chứa gap, fatigue và glucose bổ sung. Các thẻ tác tử chuyển màu theo thông điệp thực tế của phiên vừa chạy; chi tiết được thu gọn trong mục Chi tiết phối hợp tác tử.
 
 \begin{figure}[H]\centering
 \includegraphics[width=\textwidth]{images/demo_consult.jpg}
@@ -27,7 +27,7 @@ Mặc định giao diện dùng hồ sơ mẫu lấy từ train để minh họa
 \section{Ví dụ một lượt hội chẩn}
 Với câu hỏi về HbA1c và nhật ký, hồ sơ train minh họa, gap bằng 2 và fatigue bằng 0, hệ thống nhận diện không có điều kiện dừng ở Intake. Risk chạy model mặc định Random Forest, Knowledge truy xuất các ghi chú liên quan và Reminder đọc Q-table seed 42. Council kiểm tra các proposal rồi Advisor ghép kết quả.
 
-Ở hồ sơ minh họa được chọn, score Random Forest khoảng 0,147 và ngưỡng 0,230 nên dự đoán nhãn 0. Hồ sơ mẫu xuất phát từ lớp 1 của train; việc dự đoán nhãn 0 cho thấy đây là mô hình có sai số, không phải ví dụ được chọn để luôn đúng. Giao diện luôn giải thích ý nghĩa nhãn/score và không chuyển nhãn 0 thành tuyên bố không mắc bệnh.
+Ở hồ sơ minh họa được chọn, score Random Forest khoảng 0,147 và ngưỡng 0,230 nên dự đoán nhãn 0. Giao diện trình bày score bằng vòng điểm, kèm model và ngưỡng. Tri thức được tách thành các thẻ có ID/URL; hành động Reminder nằm trong thẻ nhắc nhật ký. Có thể tải kết quả của cả phiên bằng nút Tải kết quả phiên.
 
 Trace có 12 thông điệp để người đọc thấy thứ tự gọi, trạng thái từng bước và thời gian. Có thể tải JSON để kiểm tra proposal, evidence và lý do duyệt. Bảng trace không phải chuỗi suy nghĩ ẩn của model; nó là log của những thao tác phần mềm thực sự đã gọi.
 
