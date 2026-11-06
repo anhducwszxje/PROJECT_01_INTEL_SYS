@@ -65,7 +65,7 @@
     "notebooks/03_Q_learning_nhac_nhat_ky.ipynb": "cc2b19c48d25e10a5fb7ed02789cdc7246ece83acaecce498df2bbd82d8ae2a4",
     "notebooks/04_Tich_hop_Multi_Agent_va_Demo.ipynb": "6acea462570c17f60c728a2874d43f7891075b42d25131704ff8d529ad3cd51c",
     "notebooks/README.md": "2bf84d522539c4a8e3419a17a25c94d58d93d58b1965b3c5c60cafb9eec8ca07",
-    "README.md": "5e21843e34edb1431576ebc3386c08608380fa23bb9113e639829a53a6ce22d6",
+    "README.md": "e3033f99a181b5119216d0979ee8b73ba629e24b983000f897867ca066d77f4f",
     "report/architecture.tex": "2f4912353811b69427dd3a39fa186cd9667fc2f27302f41b93a467632a65e007",
     "report/code_setup.tex": "14fb6e76eae0e279e10aee31b6a60e335abaefb365dbbc6818969fe76648ccec",
     "report/conclusion.tex": "a7f5f51f634c13775e67d1c46314411bc22ba1164aef013ae9a063b6299625a5",
@@ -127,7 +127,8 @@
     "scripts/prepare_data.py": "c41014fc21d7507bd3985c415ee77b0d557d2da18143afbb22ab87062f013e0b",
     "scripts/run_experiments.py": "e6a8d68949ee7316d1db6de9d258ec0eeb9d0f7977c01de028da1a5cd961203c",
     "scripts/update_report_assets.py": "86ac5e91b9acf19950f5750298eb420a2be48f8070fd143d1bd2142787035f32",
-    "tests/test_project.py": "21808312a32237de986233f9f520475a15e6eca4bc8adc5f4b1c166b91b1dcc3"
+    "tests/test_project.py": "21808312a32237de986233f9f520475a15e6eca4bc8adc5f4b1c166b91b1dcc3",
+    "ON_TAP_VAN_DAP.html": "b1d9e589fbc894f37cd8d16b0470ebcf33a73c40f1ac0f256a07d158d9d96f2e"
   },
   "notes": "Four executed notebooks, source, public study data, trained artifacts and PDF/LaTeX. Excludes environments, caches, build intermediates and optional private audit."
 }

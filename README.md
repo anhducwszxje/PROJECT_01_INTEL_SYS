@@ -1,5 +1,7 @@
 # Project01 Diabetes Agent
 
+Ôn vấn đáp: mở [ON_TAP_VAN_DAP.html](ON_TAP_VAN_DAP.html) trực tiếp bằng trình duyệt. Trang chạy offline, có 37 câu hỏi, phần xem KB/KG/dataset/code, ví dụ dẫn chuyện và luyện nói ngẫu nhiên.
+
 Hệ đa tác tử hỗ trợ phân loại **hồ sơ khảo sát**, truy xuất tri thức có nguồn và nhắc ghi nhật ký trong mô phỏng. Bản Project01 độc lập, kế thừa tập dữ liệu nghiên cứu đã có trong workspace và huấn luyện model mới. Không cần chạy project cũ.
 
 Giao diện dashboard có ba kịch bản chạy nhanh, bảy thẻ trạng thái tác tử, vòng điểm phân loại, các thẻ tri thức và biểu đồ tương tác. Nhấn **Phân tích hồ sơ**, **Tìm hiểu HbA1c** hoặc **Nhắc ghi nhật ký** để chạy ngay; dùng **Bắt đầu phân tích** khi tự nhập câu hỏi và hồ sơ.
