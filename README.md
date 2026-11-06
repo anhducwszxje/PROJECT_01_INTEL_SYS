@@ -1,6 +1,10 @@
 # Project01 Diabetes Agent
 
-Ôn vấn đáp: mở [ON_TAP_VAN_DAP.html](ON_TAP_VAN_DAP.html) trực tiếp bằng trình duyệt. Trang chạy offline, có 37 câu hỏi, phần xem KB/KG/dataset/code, ví dụ dẫn chuyện và luyện nói ngẫu nhiên.
+Ba trang HTML học offline, mở trực tiếp bằng trình duyệt theo thứ tự:
+
+1. [Lý thuyết từ đầu](LY_THUYET_AGENT_KB_KG.html): 17 phần về agent, multi-agent, KB/KG, truy xuất, học máy và Q-learning; ví dụ, công thức tương tác và 12 câu tự kiểm tra.
+2. [Áp dụng trong Project01](AP_DUNG_KIEN_THUC_PROJECT01.html): 19 phần đối chiếu lý thuyết với 23 đoạn source có số dòng, dữ liệu thật, graph, bảng Q, metric và 5 lượt chạy snapshot.
+3. [Ôn vấn đáp](ON_TAP_VAN_DAP.html): 37 câu hỏi, phần xem KB/KG/dataset/code, ví dụ dẫn chuyện và luyện nói ngẫu nhiên.
 
 Hệ đa tác tử hỗ trợ phân loại **hồ sơ khảo sát**, truy xuất tri thức có nguồn và nhắc ghi nhật ký trong mô phỏng. Bản Project01 độc lập, kế thừa tập dữ liệu nghiên cứu đã có trong workspace và huấn luyện model mới. Không cần chạy project cũ.
 
